@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flickbar.github.io/sitemap.xml
