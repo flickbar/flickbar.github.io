@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<meta name="author" content="Parsa Kamalipour">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141a23" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="{{url}}">
+<link rel="alternate" hreflang="en" href="https://flickbar.github.io/">
+<link rel="alternate" hreflang="fr" href="https://flickbar.github.io/fr/">
+<link rel="alternate" hreflang="fa" href="https://flickbar.github.io/fa/">
+<link rel="alternate" hreflang="x-default" href="https://flickbar.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flickbar">
+<meta property="og:locale" content="{{ogLocale}}">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{description}}">
+<meta property="og:url" content="{{url}}">
+<meta property="og:image" content="https://flickbar.github.io/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<script>
+  // Before first paint, so a saved theme never flashes the other one.
+  try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Flickbar", "inLanguage": "{{lang}}",
+ "operatingSystem": "macOS 14+", "applicationCategory": "UtilitiesApplication",
+ "description": "{{description}}",
+ "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+ "author": {"@type": "Person", "name": "Parsa Kamalipour", "url": "https://github.com/benymaxparsa"},
+ "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+ "downloadUrl": "https://github.com/flickbar/flickbar/releases/latest",
+ "screenshot": "https://flickbar.github.io/img/settings-gestures-{{lang}}.webp"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{{font}}" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<a class="skip" href="#main">{{skip}}</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.9-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+</svg>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="{{home}}"><img src="/img/icon-64.png" alt="" width="30" height="30">Flickbar</a>
+    <a class="hide-sm" href="#features">{{navFeatures}}</a>
+    <a class="hide-sm" href="#gestures">{{navGestures}}</a>
+    <a class="hide-sm" href="#faq">{{navFaq}}</a>
+    <nav class="langs hide-sm" aria-label="{{languages}}">{{langLinksShort}}</nav>
+    <div class="tools">
+      <button class="chip" type="button" id="themeBtn" aria-label="{{themeAuto}}"><svg class="i"><use href="#i-auto"/></svg></button>
+      <a class="chip" href="https://github.com/flickbar/flickbar" aria-label="{{github}}"><svg class="i solid"><use href="#i-github"/></svg></a>
+    </div>
+    <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">{{download}}</a>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>{{heroTitle}}</h1>
+      <p class="lede">{{heroLede}}</p>
+      <div class="cta">
+        <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">{{downloadMac}}</a>
+        <span class="meta">{{heroMeta}}</span>
+      </div>
+      <div class="cmd"><code>brew install --cask flickbar/tap/flickbar</code><button type="button" class="copy">{{copy}}</button></div>
+    </div>
+
+    <div>
+      <div class="desk" aria-hidden="true">
+        <div class="menubar"></div>
+        <div class="screen">
+          <div class="grid" id="grid"><div></div><div></div><div></div></div>
+          <div class="preview" id="preview"></div>
+          <div class="win" id="win">
+            <div class="titlebar"><i></i><i></i><i></i>
+              <svg class="pointer" viewBox="0 0 14 20"><path d="M1 1v15l4-4 3 7 3-1.4-3-6.6h5.5z" fill="#15202e" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="doc"><b style="width:70%"></b><b style="width:90%"></b><b style="width:55%"></b><b style="width:80%"></b></div>
+          </div>
+        </div>
+      </div>
+      <div class="below">
+        <div class="pad" id="pad" aria-hidden="true"><span class="finger"></span><span class="finger"></span></div>
+        <div class="caption" id="caption" aria-live="polite"><strong>{{tryTitle}}</strong><span>{{tryText}}</span></div>
+      </div>
+      <div class="controls" id="controls">
+        <button type="button" data-g="left">{{gLeft}}</button>
+        <button type="button" data-g="right">{{gRight}}</button>
+        <button type="button" data-g="up">{{gUp}}</button>
+        <button type="button" data-g="down">{{gDown}}</button>
+        <button type="button" data-g="leftUp">{{gLeftUp}}</button>
+        <button type="button" data-g="tap">{{gTap}}</button>
+        <button type="button" data-g="pinchOut">{{gPinchOut}}</button>
+        <button type="button" data-g="pinchIn">{{gPinchIn}}</button>
+        <button type="button" data-g="grid">{{gGrid}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <h2>{{featuresTitle}}</h2>
+    <p class="intro">{{featuresIntro}}</p>
+
+    <div class="feature">
+      <div>
+        <h3>{{f1Title}}</h3>
+        <p>{{f1Text1}}</p>
+        <p>{{f1Text2}}</p>
+      </div>
+      <div class="art"><img src="/img/settings-gestures-{{lang}}.webp" width="600" height="740" alt="{{f1Alt}}" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>{{f2Title}}</h3>
+        <p>{{f2Text}}</p>
+      </div>
+      <div class="art"><div class="mini" aria-hidden="true">
+        <div><b class="full"></b></div><div><b class="pick"></b><b></b></div><div><b></b><b></b></div>
+      </div></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>{{f3Title}}</h3>
+        <p>{{f3Text}}</p>
+      </div>
+      <div class="art"><div class="dockart" aria-hidden="true">
+        <div class="stack"><span></span><span></span><span></span></div>
+        <div class="dock"><span></span><span></span><span class="on"></span><span></span><span></span></div>
+      </div></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>{{f4Title}}</h3>
+        <p>{{f4Text}}</p>
+      </div>
+      <div class="art"><img src="/img/tutorial-{{lang}}.webp" width="520" height="468" alt="{{f4Alt}}" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>{{f5Title}}</h3>
+        <p>{{f5Text1}}</p>
+        <p>{{f5Text2}}</p>
+      </div>
+      <div class="art"><img src="/img/settings-general-{{lang}}.webp" width="600" height="580" alt="{{f5Alt}}" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="gestures">
+  <div class="wrap">
+    <h2>{{gesturesTitle}}</h2>
+    <p class="intro">{{gesturesIntro}}</p>
+    <div class="cols">
+      <table>
+        <caption>{{onTitleBar}}</caption>
+        <tr><td>{{tSide}}</td><td>{{tSideResult}}</td></tr>
+        <tr><td>{{tQuarter}}</td><td>{{tQuarterResult}}</td></tr>
+        <tr><td>{{tUp}}</td><td>{{tUpResult}}</td></tr>
+        <tr><td>{{tDown}}</td><td>{{tDownResult}}</td></tr>
+        <tr><td>{{tTap}}</td><td>{{tTapResult}}</td></tr>
+        <tr><td>{{tPinchOut}}</td><td>{{tPinchOutResult}}</td></tr>
+        <tr><td>{{tPinchIn}}</td><td>{{tPinchInResult}}</td></tr>
+        <tr><td>{{tCommand}}</td><td>{{tCommandResult}}</td></tr>
+        <tr><td>{{tHold}}</td><td>{{tHoldResult}}</td></tr>
+      </table>
+      <div>
+        <table>
+          <caption>{{onDock}}</caption>
+          <tr><td>{{dUp}}</td><td>{{dUpResult}}</td></tr>
+          <tr><td>{{dDown}}</td><td>{{dDownResult}}</td></tr>
+          <tr><td>{{dSide}}</td><td>{{dSideResult}}</td></tr>
+          <tr><td>{{dPinchIn}}</td><td>{{dPinchInResult}}</td></tr>
+        </table>
+        <p>{{shortcutsNote}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap facts">
+    <div>
+      <h3>{{fact1Title}}</h3>
+      <p>{{fact1Text}}</p>
+    </div>
+    <div>
+      <h3>{{fact2Title}}</h3>
+      <p>{{fact2Text}}</p>
+    </div>
+    <div>
+      <h3>{{fact3Title}}</h3>
+      <p>{{fact3Text}}</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <h2>{{faqTitle}}</h2>
+    <details><summary>{{q1}}</summary><p>{{a1}}</p></details>
+    <details><summary>{{q2}}</summary><p>{{a2}}</p></details>
+    <details><summary>{{q3}}</summary><p>{{a3}}</p></details>
+    <details><summary>{{q4}}</summary><p>{{a4}}</p></details>
+    <details><summary>{{q5}}</summary><p>{{a5}}</p></details>
+    <details><summary>{{q6}}</summary><p>{{a6}}</p></details>
+    <details><summary>{{q7}}</summary><p>{{a7}}</p></details>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <h2>{{endTitle}}</h2>
+    <p>{{endText}}</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">{{downloadMac}}</a>
+    </div>
+    <div class="cmd"><code>brew install --cask flickbar/tap/flickbar</code><button type="button" class="copy">{{copy}}</button></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h3>Flickbar</h3>
+      <p>{{footerAbout}}</p>
+      <div class="seg" role="group" aria-label="{{theme}}" id="themeSeg">
+        <button type="button" data-theme-set="auto">{{auto}}</button>
+        <button type="button" data-theme-set="light">{{light}}</button>
+        <button type="button" data-theme-set="dark">{{dark}}</button>
+      </div>
+    </div>
+    <nav aria-label="{{project}}">
+      <h3>{{project}}</h3>
+      <a href="https://github.com/flickbar/flickbar">{{sourceCode}}</a>
+      <a href="https://github.com/flickbar/flickbar/releases">{{releases}}</a>
+      <a href="https://github.com/flickbar/homebrew-tap">{{tap}}</a>
+      <a href="https://github.com/flickbar/flickbar/issues">{{reportIssue}}</a>
+      <a href="https://github.com/flickbar/flickbar#privacy">{{privacy}}</a>
+    </nav>
+    <nav aria-label="{{languages}}">
+      <h3>{{languages}}</h3>
+      <div class="langs">{{langLinksLong}}</div>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/json" id="i18n">{{i18n}}</script>
+<script src="/site.js"></script>
+</body>
+</html>

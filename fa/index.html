@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flickbar</title>
+<meta name="description" content="پنجره‌های مک را با حرکت‌های ترک‌پد روی نوار عنوانشان بچینید، اندازه‌شان را عوض کنید و جابه‌جایشان کنید. رایگان و متن‌باز.">
+<meta name="author" content="Parsa Kamalipour">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141a23" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://flickbar.github.io/fa/">
+<link rel="alternate" hreflang="en" href="https://flickbar.github.io/">
+<link rel="alternate" hreflang="fr" href="https://flickbar.github.io/fr/">
+<link rel="alternate" hreflang="fa" href="https://flickbar.github.io/fa/">
+<link rel="alternate" hreflang="x-default" href="https://flickbar.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flickbar">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:title" content="Flickbar">
+<meta property="og:description" content="پنجره‌های مک را با حرکت‌های ترک‌پد روی نوار عنوانشان بچینید، اندازه‌شان را عوض کنید و جابه‌جایشان کنید. رایگان و متن‌باز.">
+<meta property="og:url" content="https://flickbar.github.io/fa/">
+<meta property="og:image" content="https://flickbar.github.io/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<script>
+  // Before first paint, so a saved theme never flashes the other one.
+  try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Flickbar", "inLanguage": "fa",
+ "operatingSystem": "macOS 14+", "applicationCategory": "UtilitiesApplication",
+ "description": "پنجره‌های مک را با حرکت‌های ترک‌پد روی نوار عنوانشان بچینید، اندازه‌شان را عوض کنید و جابه‌جایشان کنید. رایگان و متن‌باز.",
+ "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+ "author": {"@type": "Person", "name": "Parsa Kamalipour", "url": "https://github.com/benymaxparsa"},
+ "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+ "downloadUrl": "https://github.com/flickbar/flickbar/releases/latest",
+ "screenshot": "https://flickbar.github.io/img/settings-gestures-fa.webp"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<a class="skip" href="#main">رفتن به محتوا</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.9-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+</svg>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="/fa/"><img src="/img/icon-64.png" alt="" width="30" height="30">Flickbar</a>
+    <a class="hide-sm" href="#features">ویژگی‌ها</a>
+    <a class="hide-sm" href="#gestures">حرکت‌ها</a>
+    <a class="hide-sm" href="#faq">پرسش‌ها</a>
+    <nav class="langs hide-sm" aria-label="زبان‌ها"><a href="/" hreflang="en" lang="en">EN</a><a href="/fr/" hreflang="fr" lang="fr">FR</a><a href="/fa/" hreflang="fa" lang="fa" aria-current="page">فا</a></nav>
+    <div class="tools">
+      <button class="chip" type="button" id="themeBtn" aria-label="پوسته: خودکار"><svg class="i"><use href="#i-auto"/></svg></button>
+      <a class="chip" href="https://github.com/flickbar/flickbar" aria-label="صفحه‌ی Flickbar در GitHub"><svg class="i solid"><use href="#i-github"/></svg></a>
+    </div>
+    <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">دانلود</a>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>پنجره‌ها، با یک حرکت سر جایشان.</h1>
+      <p class="lede">با دو انگشت روی نوار عنوان بکشید تا پنجره نیمه، یک‌سوم یا یک‌چهارم صفحه را بگیرد، کل صفحه را پر کند یا به نمایشگر دیگری برود.</p>
+      <div class="cta">
+        <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">دانلود برای مک</a>
+        <span class="meta">رایگان و متن‌باز<br>برای macOS ۱۴ یا جدیدتر</span>
+      </div>
+      <div class="cmd"><code>brew install --cask flickbar/tap/flickbar</code><button type="button" class="copy">کپی</button></div>
+    </div>
+
+    <div>
+      <div class="desk" aria-hidden="true">
+        <div class="menubar"></div>
+        <div class="screen">
+          <div class="grid" id="grid"><div></div><div></div><div></div></div>
+          <div class="preview" id="preview"></div>
+          <div class="win" id="win">
+            <div class="titlebar"><i></i><i></i><i></i>
+              <svg class="pointer" viewBox="0 0 14 20"><path d="M1 1v15l4-4 3 7 3-1.4-3-6.6h5.5z" fill="#15202e" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="doc"><b style="width:70%"></b><b style="width:90%"></b><b style="width:55%"></b><b style="width:80%"></b></div>
+          </div>
+        </div>
+      </div>
+      <div class="below">
+        <div class="pad" id="pad" aria-hidden="true"><span class="finger"></span><span class="finger"></span></div>
+        <div class="caption" id="caption" aria-live="polite"><strong>یک حرکت را امتحان کنید</strong><span>یکی از گزینه‌های پایین را بزنید تا کارش را ببینید.</span></div>
+      </div>
+      <div class="controls" id="controls">
+        <button type="button" data-g="left">به چپ</button>
+        <button type="button" data-g="right">به راست</button>
+        <button type="button" data-g="up">به بالا</button>
+        <button type="button" data-g="down">به پایین</button>
+        <button type="button" data-g="leftUp">چپ، بعد بالا</button>
+        <button type="button" data-g="tap">دو ضربه</button>
+        <button type="button" data-g="pinchOut">باز کردن انگشت‌ها</button>
+        <button type="button" data-g="pinchIn">جمع کردن انگشت‌ها</button>
+        <button type="button" data-g="grid">لمس و نگه داشتن</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <h2>پنجره‌ها را بچینید، بی‌آنکه سراغ صفحه‌کلید بروید</h2>
+    <p class="intro">دستتان همین حالا روی ترک‌پد است. برنامه‌ی Flickbar نوار عنوان را به جایی برای حرکت‌ها تبدیل می‌کند و به بقیه‌ی پیمایش‌ها کاری ندارد.</p>
+
+    <div class="feature">
+      <div>
+        <h3>هر چیدمان رایج، با یک حرکت</h3>
+        <p>برای نیمه‌ی صفحه به چپ یا راست بکشید. اگر همان حرکت را تکرار کنید، پنجره دوسوم و بعد یک‌سوم صفحه را می‌گیرد. برای پر کردن صفحه به بالا بکشید و برای کوچک کردن پنجره به پایین.</p>
+        <p>تا وقتی انگشت‌هایتان روی ترک‌پد است، نشانه‌ای به جای تازه‌ی پنجره می‌لغزد و لرزشی کوتاه خبر می‌دهد که حرکت شناخته شد. برای لغو، پیش از برداشتن انگشت‌ها Esc را بزنید.</p>
+      </div>
+      <div class="art"><img src="/img/settings-gestures-fa.webp" width="600" height="740" alt="تنظیمات حرکت‌ها، با کار هر کشیدن" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>جدولی برای همه‌ی حالت‌های دیگر</h3>
+        <p>دو انگشت را لحظه‌ای روی نوار عنوان نگه دارید تا جدولی ظاهر شود: سه ستون، هر کدام به بلندی کل صفحه یا نصف بالا و پایین. روی یک خانه بروید و انگشت‌ها را بردارید تا پنجره همان‌جا بنشیند.</p>
+      </div>
+      <div class="art"><div class="mini" aria-hidden="true">
+        <div><b class="full"></b></div><div><b class="pick"></b><b></b></div><div><b></b><b></b></div>
+      </div></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>نوار Dock هم گوش می‌دهد</h3>
+        <p>روی نماد یک برنامه در Dock به بالا بکشید تا همه‌ی پنجره‌هایش را ببینید، به پایین تا پنهانش کنید، به کنار تا پنجره‌ی بعدی‌اش جلو بیاید، یا انگشت‌ها را جمع کنید تا از آن خارج شوید. روی نماد پنجره‌ای که کوچک شده، هر حرکت نوار عنوان آن را برمی‌گرداند و سر جایش می‌گذارد.</p>
+      </div>
+      <div class="art"><div class="dockart" aria-hidden="true">
+        <div class="stack"><span></span><span></span><span></span></div>
+        <div class="dock"><span></span><span></span><span class="on"></span><span></span><span></span></div>
+      </div></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>یادگیری در یک دقیقه</h3>
+        <p>بعد از دادن دسترسی، یک پنجره‌ی تمرینی حرکت‌های اصلی را یادتان می‌دهد و هر کدام را که انجام دهید تیک می‌زند. هر وقت خواستید، از منو دوباره بازش کنید.</p>
+      </div>
+      <div class="art"><img src="/img/tutorial-fa.webp" width="520" height="468" alt="آموزش حرکت‌ها، با سه مرحله‌ی اول تیک‌خورده" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>به سلیقه‌ی خودتان</h3>
+        <p>کار هر حرکت را انتخاب کنید، برای هر کاری میان‌بر صفحه‌کلید بگذارید، بین پنجره‌ها فاصله بیندازید و حرکت‌ها را در برنامه‌هایی که نوار عنوانشان را لازم دارند خاموش کنید.</p>
+        <p>با نگه داشتن ⌥ Option در هر جای پنجره حرکت کنید، یا با ⌘ آن را به نمایشگر همان سمت بفرستید. زبان برنامه می‌تواند فارسی، انگلیسی یا فرانسوی باشد.</p>
+      </div>
+      <div class="art"><img src="/img/settings-general-fa.webp" width="600" height="580" alt="تنظیمات عمومی: فاصله‌ی بین پنجره‌ها، نشانه، لرزش، زبان، اجرا هنگام ورود و به‌روزرسانی‌ها" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="gestures">
+  <div class="wrap">
+    <h2>همه‌ی حرکت‌ها</h2>
+    <p class="intro">نشانگر را روی نوار عنوان پنجره یا نماد Dock ببرید و با دو انگشت کار کنید. کار هر کدام را می‌توانید در تنظیمات عوض کنید.</p>
+    <div class="cols">
+      <table>
+        <caption>روی نوار عنوان</caption>
+        <tr><td>کشیدن به چپ یا راست</td><td>نیمه‌ی چپ یا راست؛ با تکرار، دوسوم و بعد یک‌سوم</td></tr>
+        <tr><td>کشیدن به کنار، بعد به بالا یا پایین</td><td>همان یک‌چهارم صفحه</td></tr>
+        <tr><td>کشیدن به بالا</td><td>پر کردن صفحه؛ با تکرار، یک‌سوم وسط</td></tr>
+        <tr><td>کشیدن به پایین</td><td>کوچک کردن (یا اگر بخواهید، بازگرداندن اندازه‌ی قبلی)</td></tr>
+        <tr><td>دو ضربه</td><td>بردن پنجره به وسط صفحه</td></tr>
+        <tr><td>باز کردن دو انگشت</td><td>رفتن به تمام‌صفحه یا بیرون آمدن از آن</td></tr>
+        <tr><td>جمع کردن دو انگشت</td><td>بستن پنجره</td></tr>
+        <tr><td>نگه داشتن ⌘ و کشیدن</td><td>بردن به نمایشگر همان سمت</td></tr>
+        <tr><td>لمس، نگه داشتن، بعد حرکت</td><td>انتخاب چیدمان از جدول</td></tr>
+      </table>
+      <div>
+        <table>
+          <caption>روی نماد Dock</caption>
+          <tr><td>کشیدن به بالا</td><td>نشان دادن همه‌ی پنجره‌های برنامه</td></tr>
+          <tr><td>کشیدن به پایین</td><td>پنهان کردن برنامه</td></tr>
+          <tr><td>کشیدن به چپ یا راست</td><td>آوردن پنجره‌ی بعدی برنامه به جلو</td></tr>
+          <tr><td>جمع کردن دو انگشت</td><td>خروج از برنامه</td></tr>
+        </table>
+        <p>برای هر کار می‌توانید میان‌بر صفحه‌کلید هم بگذارید. در ابتدا هیچ میان‌بری تنظیم نشده، پس برنامه هیچ‌وقت کلیدهایی را که استفاده می‌کنید نمی‌گیرد.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap facts">
+    <div>
+      <h3>چیزی از مک شما بیرون نمی‌رود</h3>
+      <p>نه آماری جمع می‌شود و نه حسابی لازم است. بررسی به‌روزرسانی تا وقتی روشنش نکنید خاموش است و فقط شماره‌ی نسخه‌ی برنامه را می‌فرستد.</p>
+    </div>
+    <div>
+      <h3>امضاشده و گواهی‌شده</h3>
+      <p>نسخه‌ها با Developer ID امضا شده‌اند و Apple آن‌ها را بررسی و گواهی کرده است. به‌روزرسانی‌ها فقط وقتی نصب می‌شوند که با کلید امضای خود برنامه جور باشند.</p>
+    </div>
+    <div>
+      <h3>متن‌باز</h3>
+      <p>ساخته‌ی <a href="https://github.com/benymaxparsa">پارسا کمالی‌پور</a> با مجوز GPL. کد را بخوانید، خودتان بسازیدش یا <a href="https://github.com/flickbar/flickbar">تغییری پیشنهاد کنید</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <h2>پرسش‌ها</h2>
+    <details><summary>هیچ هزینه‌ای ندارد؟</summary><p>نه، هیچ. نسخه‌ی آزمایشی، نسخه‌ی پولی یا حساب کاربری ندارد. برنامه‌ی Flickbar نرم‌افزار آزاد با مجوز GPL-3.0-or-later است.</p></details>
+    <details><summary>چرا دسترسی «دسترس‌پذیری» می‌خواهد؟</summary><p>سیستم macOS این دسترسی را برای هر برنامه‌ای که پنجره‌های برنامه‌های دیگر را جابه‌جا می‌کند یا اندازه‌شان را تغییر می‌دهد لازم می‌داند. برنامه فقط از آن استفاده می‌کند تا پنجره یا نماد Dock زیر نشانگر را پیدا کند و وقتی حرکت می‌کنید یا میان‌بر می‌زنید، روی آن کار کند.</p></details>
+    <details><summary>مزاحم پیمایش معمولی نمی‌شود؟</summary><p>نه. فقط حرکت‌های دوانگشتی که روی نوار عنوان یا نماد Dock شروع می‌شوند به کار می‌روند. بقیه‌ی پیمایش و بزرگ‌نمایی دست‌نخورده رد می‌شود و چرخ ماوس نادیده گرفته می‌شود.</p></details>
+    <details><summary>ترک‌پد لازم است؟</summary><p>برای حرکت‌ها بله. میان‌برهای صفحه‌کلید با هر صفحه‌کلیدی کار می‌کنند، پس با ماوس هم می‌شود از برنامه استفاده کرد.</p></details>
+    <details><summary>جمع و باز کردن انگشت‌ها یا دو ضربه کار نمی‌کند</summary><p>در تنظیمات سیستم ← ترک‌پد ← پیمایش و بزرگ‌نمایی، گزینه‌های <em>بزرگ‌نمایی یا کوچک‌نمایی</em> و <em>بزرگ‌نمایی هوشمند</em> را روشن کنید. سیستم macOS این حرکت‌ها را فقط وقتی روشن باشند می‌فرستد.</p></details>
+    <details><summary>به چه زبان‌هایی است؟</summary><p>فارسی، انگلیسی و فرانسوی. زبان برنامه همان زبان مک شماست، یا می‌توانید در <em>تنظیمات ← عمومی ← زبان</em> یکی را انتخاب کنید.</p></details>
+    <details><summary>چطور به‌روزرسانی یا حذفش کنم؟</summary><p>از منوی برنامه گزینه‌ی <em>بررسی به‌روزرسانی‌ها…</em> را بزنید، یا بررسی روزانه را در تنظیمات روشن کنید. اگر با Homebrew نصبش کرده‌اید، <code>brew upgrade --cask flickbar</code> هم کار می‌کند. برای حذف، از نماد برنامه در نوار منو آن را ببندید و به سطل زباله بیندازید، یا <code>brew uninstall --cask flickbar</code> را اجرا کنید.</p></details>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <h2>به نوار عنوان‌هایتان کاری بدهید</h2>
+    <p>رایگان، متن‌باز و آماده در یک دقیقه.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">دانلود برای مک</a>
+    </div>
+    <div class="cmd"><code>brew install --cask flickbar/tap/flickbar</code><button type="button" class="copy">کپی</button></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h3>Flickbar</h3>
+      <p>ساخته‌ی <a href="https://github.com/benymaxparsa">پارسا کمالی‌پور</a>. نرم‌افزار آزاد با مجوز <a href="https://github.com/flickbar/flickbar/blob/main/LICENSE">GPL-3.0-or-later</a>.</p>
+      <div class="seg" role="group" aria-label="پوسته" id="themeSeg">
+        <button type="button" data-theme-set="auto">خودکار</button>
+        <button type="button" data-theme-set="light">روشن</button>
+        <button type="button" data-theme-set="dark">تیره</button>
+      </div>
+    </div>
+    <nav aria-label="پروژه">
+      <h3>پروژه</h3>
+      <a href="https://github.com/flickbar/flickbar">کد منبع</a>
+      <a href="https://github.com/flickbar/flickbar/releases">نسخه‌ها</a>
+      <a href="https://github.com/flickbar/homebrew-tap">مخزن Homebrew</a>
+      <a href="https://github.com/flickbar/flickbar/issues">گزارش مشکل</a>
+      <a href="https://github.com/flickbar/flickbar#privacy">حریم خصوصی</a>
+    </nav>
+    <nav aria-label="زبان‌ها">
+      <h3>زبان‌ها</h3>
+      <div class="langs"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/fa/" hreflang="fa" lang="fa" aria-current="page">فارسی</a></div>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/json" id="i18n">{"copy": "کپی", "copied": "کپی شد", "selectToCopy": "برای کپی انتخاب کنید", "theme": {"auto": "پوسته: خودکار", "light": "پوسته: روشن", "dark": "پوسته: تیره"}, "names": {"left": "کشیدن به چپ", "right": "کشیدن به راست", "up": "کشیدن به بالا", "down": "کشیدن به پایین", "leftUp": "چپ، بعد بالا", "tap": "دو ضربه", "pinchOut": "باز کردن دو انگشت", "pinchIn": "جمع کردن دو انگشت", "grid": "لمس، نگه داشتن، بعد حرکت"}, "results": {"left": ["نیمه‌ی چپ", "دوسوم چپ", "یک‌سوم چپ"], "right": ["نیمه‌ی راست", "دوسوم راست", "یک‌سوم راست"], "middleThird": "یک‌سوم وسط", "fill": "پر کردن صفحه", "topLeft": "یک‌چهارم بالا چپ", "minimize": "کوچک کردن", "center": "بردن به وسط صفحه", "leaveFull": "بیرون آمدن از تمام‌صفحه", "full": "تمام‌صفحه", "close": "بستن پنجره", "grid": "ستون وسط، نیمه‌ی بالا"}}</script>
+<script src="/site.js"></script>
+</body>
+</html>
