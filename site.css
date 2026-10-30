@@ -130,7 +130,8 @@ h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 0.98; letter-spacing: -
 .mdock .slot.full i { opacity: 1; }
 /* A container, so the pointer and its label move by translate in cqw/cqh (its own percentages), which isn't layout shift. */
 .screen { position: absolute; inset: 5% 0 14% 0; container-type: size; }
-.win, .preview { position: absolute; left: 0; top: 0; transition: all 0.32s cubic-bezier(0.3, 0.7, 0.2, 1); }
+/* Only these, so a change of transform-origin or visibility (minimizing) happens at once. */
+.win, .preview { position: absolute; left: 0; top: 0; transition: 0.32s cubic-bezier(0.3, 0.7, 0.2, 1); transition-property: translate, width, height, transform, opacity; }
 .win { background: var(--window); border-radius: 10px; box-shadow: 0 0 0 1px rgba(20, 32, 46, 0.08), 0 12px 32px rgba(20, 32, 46, 0.28); overflow: hidden; z-index: 1; }
 .win.closed { opacity: 0; transform: scale(0.92); }
 .titlebar { position: relative; height: 26px; background: var(--bar); display: flex; align-items: center; gap: 6px; padding: 0 10px; }

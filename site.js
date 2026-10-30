@@ -147,7 +147,7 @@ async function play(g) {
   } else if (g === 'down') {
     // The Dock makes room, the window shrinks into it, and later comes back as it was.
     slot.classList.add('on');
-    await wait(250);
+    await wait(300); // the slot's 0.25s opening, done, so it's measured at full size
     const a = win.getBoundingClientRect(), b = slot.getBoundingClientRect();
     win.style.transformOrigin = '0 0';
     win.style.transform = `translate(${b.left - a.left}px, ${b.top - a.top}px) scale(${b.width / a.width}, ${b.height / a.height})`;
