@@ -12,11 +12,11 @@ import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-LANGS = {"en": ("index.html", "EN", "English"), "fr": ("fr/index.html", "FR", "Français"), "fa": ("fa/index.html", "فا", "فارسی")}
+LANGS = {"en": ("index.html", "English"), "fr": ("fr/index.html", "Français"), "fa": ("fa/index.html", "فارسی")}
 # Keys that hold settings rather than text people read.
 SETTINGS = {"lang", "dir", "url", "home", "ogLocale", "font", "title"}
 # Arabic-only letters, hamza in any form, Arabic diacritics (including tanvin) and Arabic-Indic digits.
-NOT_PERSIAN = set("يكةءأإؤئٔ") | {chr(c) for c in range(0x064B, 0x0656)} | {chr(c) for c in range(0x0660, 0x066A)}
+NOT_PERSIAN = set("يكةءأإؤئٔىۀ\u0670") | {chr(c) for c in range(0x064B, 0x0660)} | {chr(c) for c in range(0x0660, 0x066A)}
 
 
 def texts(value):
@@ -57,27 +57,37 @@ def check_persian(strings):
     return problems
 
 
-def lang_links(current, short):
+def lang_links(current):
     links = []
-    for code, (path, abbr, name) in LANGS.items():
+    for code, (path, name) in LANGS.items():
         href = "/" + path.removesuffix("index.html")
-        label = abbr if short else name
         here = ' aria-current="page"' if code == current else ""
-        links.append(f'<a href="{href}" hreflang="{code}" lang="{code}"{here}>{label}</a>')
+        links.append(f'<a href="{href}" hreflang="{code}" lang="{code}"{here}>{name}</a>')
     return "".join(links)
 
 
 def main():
     template = (ROOT / "src/page.html").read_text()
     used = set(re.findall(r"{{(\w+)}}", template))
-    generated = {"langLinksShort", "langLinksLong", "i18n"}
+    generated = {"langLinksLong", "langName", "i18n"}
     all_strings = {code: json.loads((ROOT / f"src/strings/{code}.json").read_text()) for code in LANGS}
+
+    def shape(value):
+        """Keys and list lengths, so nested strings (the demo's) are checked too."""
+        if isinstance(value, dict):
+            return {k: shape(v) for k, v in value.items()}
+        return len(value) if isinstance(value, list) else None
 
     problems = []
     reference = set(all_strings["en"])
     for code, strings in all_strings.items():
         if set(strings) != reference:
             problems.append(f"{code}: keys differ from en: {sorted(set(strings) ^ reference)}")
+        if shape(strings["i18n"]) != shape(all_strings["en"]["i18n"]):
+            problems.append(f"{code}: i18n strings differ in shape from en")
+        # It's put into attributes and a JSON string unescaped.
+        if any(c in strings["description"] for c in '"&<>\\'):
+            problems.append(f"{code}: description must not contain \" & < > or \\")
         missing = used - generated - set(strings)
         if missing:
             problems.append(f"{code}: missing {sorted(missing)}")
@@ -87,8 +97,8 @@ def main():
 
     for code, strings in all_strings.items():
         values = dict(strings)
-        values["langLinksShort"] = lang_links(code, short=True)
-        values["langLinksLong"] = lang_links(code, short=False)
+        values["langLinksLong"] = lang_links(code)
+        values["langName"] = LANGS[code][1]
         # Inside <script>, a "</" would end the element early.
         values["i18n"] = json.dumps(strings["i18n"], ensure_ascii=False).replace("</", "<\\/")
         page = re.sub(r"{{(\w+)}}", lambda m: values[m.group(1)], template)

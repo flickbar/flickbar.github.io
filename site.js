@@ -28,12 +28,26 @@ for (const b of document.querySelectorAll('[data-theme-set]')) b.addEventListene
 
 // Frames are [x, y, w, h] in % of the screen below the menu bar.
 const $ = id => document.getElementById(id);
-const win = $('win'), preview = $('preview'), grid = $('grid'), pad = $('pad'), caption = $('caption');
+const win = $('win'), preview = $('preview'), grid = $('grid'), pad = $('pad'), pointer = $('pointer'), tag = $('tag'), arrow = $('arrow');
 const [f1, f2] = pad.children;
+const stepItems = [...$('steps').children];
 const HOME = [18, 12, 56, 72], FULL = [0, -6.38, 100, 106.38]; // full screen also covers the menu bar
 let frame = HOME, beforeFull = null, last = null, repeat = 0;
 const set = (el, [x, y, w, h]) => Object.assign(el.style, { left: x + '%', top: y + '%', width: w + '%', height: h + '%' });
 set(win, frame);
+const at = (el, [x, y]) => Object.assign(el.style, { left: x + '%', top: y + '%' });
+// Where the pointer rests on a window's title bar (the bar is about 4% of the screen's height).
+const onTitleBar = f => [f[0] + f[2] / 2, Math.max(f[1], 0) + 2];
+at(pointer, onTitleBar(frame)), at(tag, onTitleBar(frame));
+// Lights up step i of the three (point, gesture, result), optionally with new words.
+function showStep(i, text) {
+  stepItems.forEach((li, j) => { li.classList.toggle('on', j === i); li.classList.toggle('done', j < i); });
+  if (text) stepItems[i].textContent = text;
+}
+// Which way the arrow on the trackpad points, in degrees from pointing right.
+const ARROW = { left: [180], right: [0], up: [-90], down: [90], leftUp: [180, -90] };
+// Beside the fingers' path rather than on top of it.
+const showArrow = deg => { arrow.style.transform = `rotate(${deg}deg) translateY(-30px)`; arrow.classList.add('on'); };
 
 const names = T.names, R = T.results;
 function target(g) {
@@ -71,8 +85,20 @@ async function play(g) {
   repeat = g === last ? repeat + 1 : 0;
   for (const b of document.querySelectorAll('#controls button')) b.setAttribute('aria-current', b.dataset.g === g);
   const [to, result] = target(g);
-  caption.innerHTML = `<strong>${names[g]}</strong><span>${result}</span>`;
 
+  // 1. The pointer moves onto the title bar, which lights up and gets a label.
+  showStep(0);
+  pointer.style.transition = tag.style.transition = 'none';
+  at(pointer, [frame[0] + frame[2] / 2, Math.max(frame[1], 0) + frame[3] * 0.6]);
+  pointer.getBoundingClientRect();
+  pointer.style.transition = tag.style.transition = '';
+  at(pointer, onTitleBar(frame)), at(tag, onTitleBar(frame));
+  win.classList.add('pointing');
+  tag.classList.add('on');
+  await wait(750);
+
+  // 2. Two fingers do the gesture on the trackpad, with an arrow for its direction.
+  showStep(1, names[g]);
   for (const f of [f1, f2]) f.style.transition = 'none';
   place(start[g] || [0, 0, 0, 0]);
   pad.classList.add('down');
@@ -80,7 +106,8 @@ async function play(g) {
   for (const f of [f1, f2]) f.style.transition = '';
   if (g === 'tap') for (let i = 0; i < 2; i++) { pad.classList.remove('down'); await wait(110); pad.classList.add('down'); await wait(110); }
   if (g === 'grid') { pad.classList.add('hold'); await wait(500); grid.classList.add('on'); }
-  for (const s of steps[g]) {
+  for (const [i, s] of steps[g].entries()) {
+    if (ARROW[g]) showArrow(ARROW[g][i]);
     place(s);
     if (g === 'grid') set(preview, s[1] ? to : [33.33, 0, 33.34, 100]), preview.classList.add('on');
     await wait(380);
@@ -88,21 +115,28 @@ async function play(g) {
   // Closing and minimizing have nowhere to preview, like the app.
   if (g !== 'pinchIn' && g !== 'down') set(preview, to), preview.classList.add('on');
   await wait(600);
+
+  // 3. The fingers lift and the window moves.
+  showStep(2, result);
   pad.classList.remove('down', 'hold');
+  arrow.classList.remove('on');
   preview.classList.remove('on');
   grid.classList.remove('on');
+  tag.classList.remove('on');
+  win.classList.remove('pointing');
 
   if (g === 'pinchIn' || g === 'down') {
     // The window goes, then comes back so the demo can go on: fresh after a close, as it was after a minimize.
     const gone = g === 'down' ? 'minimized' : 'closed';
     win.classList.add(gone);
     await wait(900);
-    if (g === 'pinchIn') { set(win, frame = HOME); beforeFull = null; }
+    if (g === 'pinchIn') { set(win, frame = HOME); beforeFull = null; at(pointer, onTitleBar(HOME)); }
     win.classList.remove(gone);
   } else {
     if (g === 'pinchOut') beforeFull = beforeFull ? null : frame;
     else if (g !== 'tap') beforeFull = null;
     set(win, frame = to);
+    at(pointer, onTitleBar(to)), at(tag, onTitleBar(to));
   }
   last = g;
   await wait(450);
@@ -122,3 +156,8 @@ $('controls').addEventListener('click', e => {
   await wait(900);
   for (let i = 0; auto; i++) { await play(tour[i % tour.length]); await wait(1100); }
 })();
+
+// The language menu closes on a click elsewhere or Esc, like a native menu.
+const langpick = document.querySelector('.langpick');
+document.addEventListener('click', e => { if (!langpick.contains(e.target)) langpick.open = false; });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && langpick.open) { langpick.open = false; langpick.querySelector('summary').focus(); } });

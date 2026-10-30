@@ -53,6 +53,7 @@
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
   <symbol id="i-auto" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
   <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.9-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
 </svg>
 <header class="nav" id="nav">
@@ -61,8 +62,11 @@
     <a class="hide-sm" href="#features">ویژگی‌ها</a>
     <a class="hide-sm" href="#gestures">حرکت‌ها</a>
     <a class="hide-sm" href="#faq">پرسش‌ها</a>
-    <nav class="langs hide-sm" aria-label="زبان‌ها"><a href="/" hreflang="en" lang="en">EN</a><a href="/fr/" hreflang="fr" lang="fr">FR</a><a href="/fa/" hreflang="fa" lang="fa" aria-current="page">فا</a></nav>
     <div class="tools">
+      <details class="langpick">
+        <summary class="chip" aria-label="زبان‌ها"><svg class="i"><use href="#i-globe"/></svg><span>فارسی</span></summary>
+        <nav class="menu" aria-label="زبان‌ها"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/fa/" hreflang="fa" lang="fa" aria-current="page">فارسی</a></nav>
+      </details>
       <button class="chip" type="button" id="themeBtn" aria-label="پوسته: خودکار"><svg class="i"><use href="#i-auto"/></svg></button>
       <a class="chip" href="https://github.com/flickbar/flickbar" aria-label="صفحه‌ی Flickbar در GitHub"><svg class="i solid"><use href="#i-github"/></svg></a>
     </div>
@@ -90,17 +94,22 @@
           <div class="grid" id="grid"><div></div><div></div><div></div></div>
           <div class="preview" id="preview"></div>
           <div class="win" id="win">
-            <div class="titlebar"><i></i><i></i><i></i>
-              <svg class="pointer" viewBox="0 0 14 20"><path d="M1 1v15l4-4 3 7 3-1.4-3-6.6h5.5z" fill="#15202e" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
-            </div>
+            <div class="titlebar"><i></i><i></i><i></i><span class="wtitle">سند من</span></div>
             <div class="doc"><b style="width:70%"></b><b style="width:90%"></b><b style="width:55%"></b><b style="width:80%"></b></div>
           </div>
+          <svg class="pointer" id="pointer" viewBox="0 0 14 20"><path d="M1 1v15l4-4 3 7 3-1.4-3-6.6h5.5z" fill="#15202e" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          <span class="tag" id="tag">نوار عنوان</span>
         </div>
       </div>
       <div class="below">
-        <div class="pad" id="pad" aria-hidden="true"><span class="finger"></span><span class="finger"></span></div>
-        <div class="caption" id="caption" aria-live="polite"><strong>یک حرکت را امتحان کنید</strong><span>یکی از گزینه‌های پایین را بزنید تا کارش را ببینید.</span></div>
+        <figure class="padwrap" aria-hidden="true">
+          <div class="pad" id="pad"><span class="finger"></span><span class="finger"></span>
+            <svg class="arrow" id="arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+          <figcaption>ترک‌پد</figcaption>
+        </figure>
+        <ol class="steps" id="steps" aria-live="polite"><li>نشانگر را روی نوار عنوان پنجره ببرید</li><li>با دو انگشت روی ترک‌پد بکشید یا انگشت‌ها را جمع و باز کنید</li><li>پنجره خودش سر جایش می‌نشیند</li></ol>
       </div>
+      <p class="pick">یک حرکت را انتخاب کنید تا ببینید:</p>
       <div class="controls" id="controls">
         <button type="button" data-g="left">به چپ</button>
         <button type="button" data-g="right">به راست</button>
@@ -209,7 +218,7 @@
     </div>
     <div>
       <h3>امضاشده و گواهی‌شده</h3>
-      <p>نسخه‌ها با Developer ID امضا شده‌اند و Apple آن‌ها را بررسی و گواهی کرده است. به‌روزرسانی‌ها فقط وقتی نصب می‌شوند که با کلید امضای خود برنامه جور باشند.</p>
+      <p>نسخه‌ها با Developer ID امضا شده‌اند و Apple آن‌ها را بررسی و گواهی کرده است. به‌روزرسانی‌ها فقط وقتی نصب می‌شوند که با کلید امضای خود برنامه مطابقت داشته باشند.</p>
     </div>
     <div>
       <h3>متن‌باز</h3>
