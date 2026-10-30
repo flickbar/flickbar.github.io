@@ -102,6 +102,8 @@ h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 0.98; letter-spacing: -
 .pointer { position: absolute; z-index: 4; width: 15px; height: 21px; margin: -2px 0 0 -2px; transition: left 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), top 0.45s cubic-bezier(0.3, 0.7, 0.2, 1); }
 .tag { position: absolute; z-index: 4; transform: translate(14px, 16px); padding: 5px 9px; border-radius: 7px; background: var(--ink); color: var(--page); font: 600 12px/1.2 system-ui, sans-serif; white-space: nowrap; opacity: 0; transition: opacity 0.2s, left 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), top 0.45s cubic-bezier(0.3, 0.7, 0.2, 1); }
 .tag.on { opacity: 1; }
+/* On the right of the screen the label goes left of the pointer, so it isn't cut off. */
+.tag.flip { transform: translate(calc(-100% - 6px), 16px); }
 .win .doc { padding: 12px; }
 .win .doc b { display: block; height: 7px; margin: 0 0 8px; border-radius: 4px; background: var(--sketch); }
 .preview { z-index: 2; border: 2px solid color-mix(in srgb, var(--accent) 80%, transparent); background: color-mix(in srgb, var(--accent) 20%, transparent); border-radius: 10px; opacity: 0; pointer-events: none; }
@@ -229,6 +231,7 @@ footer a:hover { color: var(--ink); }
 .nav .langpick .menu a:hover { background: var(--code); }
 .langpick .menu a[aria-current="page"]::after { content: "✓"; float: inline-end; color: var(--accent); }
 footer .langs { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+footer .langs a[aria-current="page"] { color: var(--ink); font-weight: 700; }
 /* Persian: a typeface made for it, and no letter-spacing, which breaks the joins between letters. */
 :lang(fa) body, :lang(fa) button, a:lang(fa) { font-family: Vazirmatn, system-ui, sans-serif; }
 :lang(fa) h1, :lang(fa) h2, :lang(fa) h3 { letter-spacing: 0; line-height: 1.3; }

@@ -64,7 +64,7 @@
     <a class="hide-sm" href="#faq">{{navFaq}}</a>
     <div class="tools">
       <details class="langpick">
-        <summary class="chip" aria-label="{{languages}}"><svg class="i"><use href="#i-globe"/></svg><span>{{langName}}</span></summary>
+        <summary class="chip" aria-label="{{languages}}: {{langName}}"><svg class="i"><use href="#i-globe"/></svg><span>{{langName}}</span></summary>
         <nav class="menu" aria-label="{{languages}}">{{langLinksLong}}</nav>
       </details>
       <button class="chip" type="button" id="themeBtn" aria-label="{{themeAuto}}"><svg class="i"><use href="#i-auto"/></svg></button>
@@ -107,7 +107,7 @@
             <svg class="arrow" id="arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
           <figcaption>{{trackpadLabel}}</figcaption>
         </figure>
-        <ol class="steps" id="steps" aria-live="polite"><li>{{step1}}</li><li>{{step2}}</li><li>{{step3}}</li></ol>
+        <ol class="steps" id="steps" aria-live="off"><li>{{step1}}</li><li>{{step2}}</li><li>{{step3}}</li></ol>
       </div>
       <p class="pick">{{tryText}}</p>
       <div class="controls" id="controls">

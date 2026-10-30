@@ -38,7 +38,12 @@ set(win, frame);
 const at = (el, [x, y]) => Object.assign(el.style, { left: x + '%', top: y + '%' });
 // Where the pointer rests on a window's title bar (the bar is about 4% of the screen's height).
 const onTitleBar = f => [f[0] + f[2] / 2, Math.max(f[1], 0) + 2];
-at(pointer, onTitleBar(frame)), at(tag, onTitleBar(frame));
+function placeTag(f) {
+  const p = onTitleBar(f);
+  at(pointer, p), at(tag, p);
+  tag.classList.toggle('flip', p[0] > 60);
+}
+placeTag(frame);
 // Lights up step i of the three (point, gesture, result), optionally with new words.
 function showStep(i, text) {
   stepItems.forEach((li, j) => { li.classList.toggle('on', j === i); li.classList.toggle('done', j < i); });
@@ -92,7 +97,7 @@ async function play(g) {
   at(pointer, [frame[0] + frame[2] / 2, Math.max(frame[1], 0) + frame[3] * 0.6]);
   pointer.getBoundingClientRect();
   pointer.style.transition = tag.style.transition = '';
-  at(pointer, onTitleBar(frame)), at(tag, onTitleBar(frame));
+  placeTag(frame);
   win.classList.add('pointing');
   tag.classList.add('on');
   await wait(750);
@@ -130,13 +135,13 @@ async function play(g) {
     const gone = g === 'down' ? 'minimized' : 'closed';
     win.classList.add(gone);
     await wait(900);
-    if (g === 'pinchIn') { set(win, frame = HOME); beforeFull = null; at(pointer, onTitleBar(HOME)); }
+    if (g === 'pinchIn') { set(win, frame = HOME); beforeFull = null; placeTag(HOME); }
     win.classList.remove(gone);
   } else {
     if (g === 'pinchOut') beforeFull = beforeFull ? null : frame;
     else if (g !== 'tap') beforeFull = null;
     set(win, frame = to);
-    at(pointer, onTitleBar(to)), at(tag, onTitleBar(to));
+    placeTag(to);
   }
   last = g;
   await wait(450);
@@ -149,6 +154,8 @@ $('controls').addEventListener('click', e => {
   const g = e.target.dataset?.g;
   if (!g) return;
   auto = false;
+  // Announce the steps only for gestures the visitor picked, not the tour that plays by itself.
+  $('steps').setAttribute('aria-live', 'polite');
   play(g);
 });
 (async () => {
