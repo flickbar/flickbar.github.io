@@ -1,1 +1,3 @@
 https://flickbar.github.io/
+https://flickbar.github.io/fr/
+https://flickbar.github.io/fa/
