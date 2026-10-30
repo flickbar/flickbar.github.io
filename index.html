@@ -137,6 +137,7 @@ h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 0.98; letter-spacing: -
 .win, .preview { position: absolute; transition: all 0.32s cubic-bezier(0.3, 0.7, 0.2, 1); }
 .win { background: var(--window); border-radius: 8px; box-shadow: 0 10px 30px rgba(20, 32, 46, 0.22); overflow: hidden; z-index: 1; }
 .win.closed { opacity: 0; transform: scale(0.92); }
+.win.minimized { opacity: 0; transform: translateY(70%) scale(0.2); }
 .titlebar { position: relative; height: 26px; background: var(--bar); display: flex; align-items: center; gap: 6px; padding: 0 10px; }
 .titlebar i { width: 9px; height: 9px; border-radius: 50%; background: var(--sketch); }
 .pointer { position: absolute; left: 50%; top: 6px; width: 14px; height: 20px; }
@@ -367,7 +368,7 @@ footer a:hover { color: var(--ink); }
         <tr><td>Swipe left or right</td><td>Left or right half; repeat for ⅔, then ⅓</td></tr>
         <tr><td>Swipe sideways, then up or down</td><td>That quarter</td></tr>
         <tr><td>Swipe up</td><td>Fill the screen; repeat for the middle third</td></tr>
-        <tr><td>Swipe down</td><td>Restore the earlier size, otherwise minimize</td></tr>
+        <tr><td>Swipe down</td><td>Minimize</td></tr>
         <tr><td>Double-tap</td><td>Center the window</td></tr>
         <tr><td>Pinch out</td><td>Toggle full screen</td></tr>
         <tr><td>Pinch in</td><td>Close the window</td></tr>
@@ -505,7 +506,7 @@ const $ = id => document.getElementById(id);
 const win = $('win'), preview = $('preview'), grid = $('grid'), pad = $('pad'), caption = $('caption');
 const [f1, f2] = pad.children;
 const HOME = [18, 12, 56, 72], FULL = [0, -6.38, 100, 106.38]; // full screen also covers the menu bar
-let frame = HOME, saved = HOME, beforeFull = null, snapped = false, last = null, repeat = 0;
+let frame = HOME, beforeFull = null, last = null, repeat = 0;
 const set = (el, [x, y, w, h]) => Object.assign(el.style, { left: x + '%', top: y + '%', width: w + '%', height: h + '%' });
 set(win, frame);
 
@@ -520,7 +521,7 @@ function target(g) {
     case 'right': return [[100 - w, 0, w, 100], ['Right half', 'Right two thirds', 'Right third'][repeat % 3]];
     case 'up': return repeat % 2 ? [[33.33, 0, 33.34, 100], 'Middle third'] : [[0, 0, 100, 100], 'Fill the screen'];
     case 'leftUp': return [[0, 0, 50, 50], 'Top-left quarter'];
-    case 'down': return [saved, snapped ? 'Restore the earlier size' : 'Minimize'];
+    case 'down': return [frame, 'Minimize'];
     case 'tap': return [[(100 - frame[2]) / 2, (100 - frame[3]) / 2, frame[2], frame[3]], 'Center the window'];
     case 'pinchOut': return beforeFull ? [beforeFull, 'Leave full screen'] : [FULL, 'Full screen'];
     case 'pinchIn': return [frame, 'Close the window'];
@@ -562,23 +563,23 @@ async function play(g) {
     if (g === 'grid') set(preview, s[1] ? to : [33.33, 0, 33.34, 100]), preview.classList.add('on');
     await wait(380);
   }
-  if (g !== 'pinchIn') set(preview, to), preview.classList.add('on');
+  // Closing and minimizing have nowhere to preview, like the app.
+  if (g !== 'pinchIn' && g !== 'down') set(preview, to), preview.classList.add('on');
   await wait(600);
   pad.classList.remove('down', 'hold');
   preview.classList.remove('on');
   grid.classList.remove('on');
 
-  if (g === 'pinchIn') {
-    win.classList.add('closed');
+  if (g === 'pinchIn' || g === 'down') {
+    // The window goes, then comes back so the demo can go on: fresh after a close, as it was after a minimize.
+    const gone = g === 'down' ? 'minimized' : 'closed';
+    win.classList.add(gone);
     await wait(900);
-    set(win, frame = saved = HOME);
-    snapped = false; beforeFull = null;
-    win.classList.remove('closed');
+    if (g === 'pinchIn') { set(win, frame = HOME); beforeFull = null; }
+    win.classList.remove(gone);
   } else {
-    // Swipe down restores the frame from before the first snap, like the app.
     if (g === 'pinchOut') beforeFull = beforeFull ? null : frame;
-    else if (g === 'down') snapped = false;
-    else if (g !== 'tap') { if (!snapped) saved = frame; snapped = true; beforeFull = null; }
+    else if (g !== 'tap') beforeFull = null;
     set(win, frame = to);
   }
   last = g;
