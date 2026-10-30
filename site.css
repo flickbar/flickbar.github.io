@@ -1,3 +1,9 @@
+/* Variable fonts, served from here (SIL OFL, licenses in /fonts). A browser downloads one only when its text uses it. */
+@font-face { font-family: "Bricolage Grotesque"; font-weight: 400 800; font-display: swap; src: url(/fonts/bricolage-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Bricolage Grotesque"; font-weight: 400 800; font-display: swap; src: url(/fonts/bricolage-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Vazirmatn"; font-weight: 400 800; font-display: swap; src: url(/fonts/vazirmatn-arabic.woff2) format("woff2"); unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC; }
+@font-face { font-family: "Vazirmatn"; font-weight: 400 800; font-display: swap; src: url(/fonts/vazirmatn-latin.woff2) format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Vazirmatn"; font-weight: 400 800; font-display: swap; src: url(/fonts/vazirmatn-latin-ext.woff2) format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 :root {
   --page: #eef1f5;
   --ink: #15202e;
@@ -10,6 +16,9 @@
   --sketch: #d3d9e2;
   --code: #e2e7ee;
   --pad: #dde3eb;
+  --wp1: #f7c9da;
+  --wp2: #9cc4f4;
+  --wp3: #c4caef;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -24,6 +33,9 @@
     --sketch: #55627a;
     --code: #1f2733;
     --pad: #232c39;
+    --wp1: #5b3b70;
+    --wp2: #1d4d7d;
+    --wp3: #1c2440;
     color-scheme: dark;
   }
 }
@@ -39,6 +51,9 @@
   --sketch: #55627a;
   --code: #1f2733;
   --pad: #232c39;
+  --wp1: #5b3b70;
+  --wp2: #1d4d7d;
+  --wp3: #1c2440;
   color-scheme: dark;
 }
 :root[data-theme="light"] { color-scheme: light; }
@@ -88,19 +103,44 @@ h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 0.98; letter-spacing: -
 .cmd button { background: var(--page); color: var(--ink); padding: 6px 12px; font-size: 0.88rem; flex: none; }
 
 /* Demo */
-.desk { direction: ltr; position: relative; aspect-ratio: 16 / 10; background: var(--wall); border-radius: 14px; overflow: hidden; }
-.menubar { height: 6%; background: color-mix(in srgb, var(--window) 70%, transparent); }
-.screen { position: absolute; inset: 6% 0 0 0; }
-.win, .preview { position: absolute; transition: all 0.32s cubic-bezier(0.3, 0.7, 0.2, 1); }
-.win { background: var(--window); border-radius: 8px; box-shadow: 0 10px 30px rgba(20, 32, 46, 0.22); overflow: hidden; z-index: 1; }
+.desk { direction: ltr; position: relative; aspect-ratio: 16 / 10; container-type: size; background: radial-gradient(110% 90% at 12% 0%, var(--wp1), transparent 62%), radial-gradient(100% 90% at 95% 100%, var(--wp2), transparent 60%), var(--wp3); border-radius: 14px; overflow: hidden; }
+/* Sizes below are in cqh, hundredths of the demo screen's height, so the Mac scales down whole on a phone. */
+.menubar { height: 5%; display: flex; align-items: center; gap: 2.6cqh; padding: 0 2.4cqh; font: 500 max(2.6cqh, 7px)/1 system-ui, sans-serif; color: var(--ink); white-space: nowrap; background: color-mix(in srgb, var(--window) 55%, transparent); }
+.menubar:lang(fa) { direction: rtl; }
+.menubar b { font-weight: 700; }
+.menubar .extras { margin-inline-start: auto; display: flex; align-items: center; gap: 2.2cqh; }
+.menubar svg { height: max(2.2cqh, 6px); width: auto; }
+@container (max-width: 440px) { .menubar .more { display: none; } }
+.mdock { position: absolute; bottom: 1.6cqh; left: 50%; transform: translateX(-50%); height: 11cqh; display: flex; align-items: center; padding: 1.4cqh; border-radius: 3.2cqh; background: color-mix(in srgb, var(--window) 45%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--window) 60%, transparent), 0 1cqh 3cqh rgba(20, 32, 46, 0.15); }
+.mdock > * + * { margin-inline-start: 1.2cqh; }
+.mdock i { position: relative; display: block; height: 100%; aspect-ratio: 1; border-radius: 22%; box-shadow: inset 0 -0.4cqh 0 rgba(0, 0, 0, 0.12); }
+.mdock .a1 { background: linear-gradient(#5ac8fa, #1a7cf5); }
+.mdock .a2 { background: linear-gradient(#fff, #e3e6ea); }
+.mdock .a3 { background: linear-gradient(#ffd25a, #ff9f0a); }
+.mdock .a4 { background: linear-gradient(#7ee08f, #28b446); }
+.mdock .a5 { background: linear-gradient(#c38cf7, #8e4fe0); }
+.mdock .a6 { background: linear-gradient(#c7ccd4, #8e96a3); }
+/* The open app has a dot under its icon. */
+.mdock .run::after { content: ""; position: absolute; left: 50%; bottom: -1.1cqh; width: 0.8cqh; height: 0.8cqh; margin-left: -0.4cqh; border-radius: 50%; background: var(--ink); opacity: 0.6; }
+.mdock s { width: 1px; height: 80%; background: var(--ink); opacity: 0.2; }
+/* A minimized window gets its own place in the Dock, which opens up for it. */
+.mdock .slot { height: 100%; width: 0; margin-inline-start: 0; transition: width 0.25s, margin 0.25s; }
+.mdock .slot.on { width: 8.2cqh; margin-inline-start: 1.2cqh; }
+.mdock .slot i { background: var(--window); border-top: 1.6cqh solid var(--bar); border-radius: 12%; opacity: 0; }
+.mdock .slot.full i { opacity: 1; }
+/* A container, so the pointer and its label move by translate in cqw/cqh (its own percentages), which isn't layout shift. */
+.screen { position: absolute; inset: 5% 0 14% 0; container-type: size; }
+.win, .preview { position: absolute; left: 0; top: 0; transition: all 0.32s cubic-bezier(0.3, 0.7, 0.2, 1); }
+.win { background: var(--window); border-radius: 10px; box-shadow: 0 0 0 1px rgba(20, 32, 46, 0.08), 0 12px 32px rgba(20, 32, 46, 0.28); overflow: hidden; z-index: 1; }
 .win.closed { opacity: 0; transform: scale(0.92); }
-.win.minimized { opacity: 0; transform: translateY(70%) scale(0.2); }
 .titlebar { position: relative; height: 26px; background: var(--bar); display: flex; align-items: center; gap: 6px; padding: 0 10px; }
-.titlebar i { width: 9px; height: 9px; border-radius: 50%; background: var(--sketch); }
+.titlebar i { width: 9px; height: 9px; border-radius: 50%; background: #ff5f57; }
+.titlebar i:nth-child(2) { background: #febc2e; }
+.titlebar i:nth-child(3) { background: #28c840; }
 .titlebar .wtitle { position: absolute; inset: 0; display: grid; place-items: center; font: 600 11px/1 system-ui, sans-serif; color: var(--muted); pointer-events: none; }
 .win.pointing .titlebar { background: color-mix(in srgb, var(--accent) 24%, var(--bar)); }
-.pointer { position: absolute; z-index: 4; width: 15px; height: 21px; margin: -2px 0 0 -2px; transition: left 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), top 0.45s cubic-bezier(0.3, 0.7, 0.2, 1); }
-.tag { position: absolute; z-index: 4; transform: translate(14px, 16px); padding: 5px 9px; border-radius: 7px; background: var(--ink); color: var(--page); font: 600 12px/1.2 system-ui, sans-serif; white-space: nowrap; opacity: 0; transition: opacity 0.2s, left 0.45s cubic-bezier(0.3, 0.7, 0.2, 1), top 0.45s cubic-bezier(0.3, 0.7, 0.2, 1); }
+.pointer { position: absolute; left: 0; top: 0; z-index: 4; width: 15px; height: 21px; margin: -2px 0 0 -2px; transition: translate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1); }
+.tag { position: absolute; left: 0; top: 0; z-index: 4; transform: translate(14px, 16px); padding: 5px 9px; border-radius: 7px; background: var(--ink); color: var(--page); font: 600 12px/1.2 system-ui, sans-serif; white-space: nowrap; opacity: 0; transition: opacity 0.2s, translate 0.45s cubic-bezier(0.3, 0.7, 0.2, 1); }
 .tag.on { opacity: 1; }
 /* On the right of the screen the label goes left of the pointer, so it isn't cut off. */
 .tag.flip { transform: translate(calc(-100% - 6px), 16px); }
@@ -218,7 +258,7 @@ footer a:hover { color: var(--ink); }
   .arrow { width: 36px; height: 36px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .win, .preview, .finger, .grid, .pointer, .tag, .arrow, .steps li { transition: none; }
+  .win, .preview, .finger, .grid, .pointer, .tag, .arrow, .steps li, .mdock .slot { transition: none; }
 }
 
 /* Languages */
@@ -233,7 +273,7 @@ footer a:hover { color: var(--ink); }
 footer .langs { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
 footer .langs a[aria-current="page"] { color: var(--ink); font-weight: 700; }
 /* Persian: a typeface made for it, and no letter-spacing, which breaks the joins between letters. */
-:lang(fa) body, :lang(fa) button, a:lang(fa) { font-family: Vazirmatn, system-ui, sans-serif; }
+:lang(fa) body, :lang(fa) button { font-family: Vazirmatn, system-ui, sans-serif; }
 :lang(fa) h1, :lang(fa) h2, :lang(fa) h3 { letter-spacing: 0; line-height: 1.3; }
 /* Persian letters run taller than Latin at the same size. */
 :lang(fa) h1 { font-size: clamp(2.2rem, 4.8vw, 3.7rem); line-height: 1.35; }

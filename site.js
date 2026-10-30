@@ -28,14 +28,14 @@ for (const b of document.querySelectorAll('[data-theme-set]')) b.addEventListene
 
 // Frames are [x, y, w, h] in % of the screen below the menu bar.
 const $ = id => document.getElementById(id);
-const win = $('win'), preview = $('preview'), grid = $('grid'), pad = $('pad'), pointer = $('pointer'), tag = $('tag'), arrow = $('arrow');
+const win = $('win'), slot = $('slot'), preview = $('preview'), grid = $('grid'), pad = $('pad'), pointer = $('pointer'), tag = $('tag'), arrow = $('arrow');
 const [f1, f2] = pad.children;
 const stepItems = [...$('steps').children];
-const HOME = [18, 12, 56, 72], FULL = [0, -6.38, 100, 106.38]; // full screen also covers the menu bar
+const HOME = [18, 12, 56, 72], FULL = [0, -6.17, 100, 123.46]; // full screen also covers the menu bar and the Dock
 let frame = HOME, beforeFull = null, last = null, repeat = 0;
-const set = (el, [x, y, w, h]) => Object.assign(el.style, { left: x + '%', top: y + '%', width: w + '%', height: h + '%' });
+const set = (el, [x, y, w, h]) => Object.assign(el.style, { translate: `${x}cqw ${y}cqh`, width: w + 'cqw', height: h + 'cqh' });
 set(win, frame);
-const at = (el, [x, y]) => Object.assign(el.style, { left: x + '%', top: y + '%' });
+const at = (el, [x, y]) => { el.style.translate = `${x}cqw ${y}cqh`; };
 // Where the pointer rests on a window's title bar (the bar is about 4% of the screen's height).
 const onTitleBar = f => [f[0] + f[2] / 2, Math.max(f[1], 0) + 2];
 function placeTag(f) {
@@ -138,13 +138,28 @@ async function play(g) {
   tag.classList.remove('on');
   win.classList.remove('pointing');
 
-  if (g === 'pinchIn' || g === 'down') {
-    // The window goes, then comes back so the demo can go on: fresh after a close, as it was after a minimize.
-    const gone = g === 'down' ? 'minimized' : 'closed';
-    win.classList.add(gone);
+  if (g === 'pinchIn') {
+    // The window goes, then comes back fresh so the demo can go on.
+    win.classList.add('closed');
     await wait(900);
-    if (g === 'pinchIn') { set(win, frame = HOME); beforeFull = null; placeTag(HOME); }
-    win.classList.remove(gone);
+    set(win, frame = HOME); beforeFull = null; placeTag(HOME);
+    win.classList.remove('closed');
+  } else if (g === 'down') {
+    // The Dock makes room, the window shrinks into it, and later comes back as it was.
+    slot.classList.add('on');
+    await wait(250);
+    const a = win.getBoundingClientRect(), b = slot.getBoundingClientRect();
+    win.style.transformOrigin = '0 0';
+    win.style.transform = `translate(${b.left - a.left}px, ${b.top - a.top}px) scale(${b.width / a.width}, ${b.height / a.height})`;
+    await wait(330);
+    win.style.visibility = 'hidden';
+    slot.classList.add('full');
+    await wait(900);
+    slot.classList.remove('full');
+    win.style.visibility = win.style.transform = '';
+    await wait(330);
+    win.style.transformOrigin = '';
+    slot.classList.remove('on');
   } else {
     if (g === 'pinchOut') beforeFull = beforeFull ? null : frame;
     else if (g !== 'tap') beforeFull = null;
@@ -166,10 +181,18 @@ $('controls').addEventListener('click', e => {
   $('steps').setAttribute('aria-live', 'polite');
   play(g);
 });
+// The tour waits while the demo is scrolled away or the tab is hidden, so it costs nothing there.
+let inView = true;
+new IntersectionObserver(([e]) => { inView = e.isIntersecting; }).observe(document.querySelector('.desk'));
 (async () => {
   const tour = ['left', 'left', 'right', 'leftUp', 'up', 'grid', 'down', 'tap', 'pinchOut', 'pinchOut'];
   await wait(900);
-  for (let i = 0; auto; i++) { await play(tour[i % tour.length]); await wait(1100); }
+  for (let i = 0; auto; i++) {
+    while (!inView || document.hidden) await wait(500);
+    if (!auto) break;
+    await play(tour[i % tour.length]);
+    await wait(1100);
+  }
 })();
 
 // The language menu closes on a click elsewhere or Esc, like a native menu.

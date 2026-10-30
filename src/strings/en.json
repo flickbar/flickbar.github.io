@@ -4,7 +4,7 @@
   "url": "https://flickbar.github.io/",
   "home": "/",
   "ogLocale": "en_US",
-  "font": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap",
+  "font": "/fonts/bricolage-latin.woff2",
   "title": "Flickbar",
   "description": "Snap, resize and move macOS windows with trackpad gestures on their title bars. Free and open source.",
   "skip": "Skip to content",
@@ -159,5 +159,11 @@
   "trackpadLabel": "Trackpad",
   "step1": "Put the pointer on a window’s title bar",
   "step2": "Swipe or pinch with two fingers on the trackpad",
-  "step3": "The window snaps into place"
+  "step3": "The window snaps into place",
+  "menuApp": "Editor",
+  "menuFile": "File",
+  "menuEdit": "Edit",
+  "menuView": "View",
+  "menuWindow": "Window",
+  "menuClock": "Thu 9:41"
 }

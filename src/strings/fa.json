@@ -4,7 +4,7 @@
   "url": "https://flickbar.github.io/fa/",
   "home": "/fa/",
   "ogLocale": "fa_IR",
-  "font": "https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap",
+  "font": "/fonts/vazirmatn-arabic.woff2",
   "title": "Flickbar",
   "description": "پنجره‌های مک را با حرکت‌های ترک‌پد روی نوار عنوانشان بچینید، اندازه‌شان را عوض کنید و جابه‌جایشان کنید. رایگان و متن‌باز.",
   "skip": "رفتن به محتوا",
@@ -159,5 +159,11 @@
   "trackpadLabel": "ترک‌پد",
   "step1": "نشانگر را روی نوار عنوان پنجره ببرید",
   "step2": "با دو انگشت روی ترک‌پد بکشید یا انگشت‌ها را جمع و باز کنید",
-  "step3": "پنجره خودش سر جایش می‌نشیند"
+  "step3": "پنجره خودش سر جایش می‌نشیند",
+  "menuApp": "ویرایشگر",
+  "menuFile": "فایل",
+  "menuEdit": "ویرایش",
+  "menuView": "نما",
+  "menuWindow": "پنجره",
+  "menuClock": "پنج‌شنبه ۹:۴۱"
 }

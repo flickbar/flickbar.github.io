@@ -4,7 +4,7 @@
   "url": "https://flickbar.github.io/fr/",
   "home": "/fr/",
   "ogLocale": "fr_FR",
-  "font": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap",
+  "font": "/fonts/bricolage-latin.woff2",
   "title": "Flickbar",
   "description": "Ancrez, redimensionnez et déplacez les fenêtres de votre Mac avec des gestes du trackpad sur leur barre de titre. Libre et gratuit.",
   "skip": "Aller au contenu",
@@ -159,5 +159,11 @@
   "trackpadLabel": "Trackpad",
   "step1": "Placez le pointeur sur la barre de titre d’une fenêtre",
   "step2": "Balayez ou pincez avec deux doigts sur le trackpad",
-  "step3": "La fenêtre se place toute seule"
+  "step3": "La fenêtre se place toute seule",
+  "menuApp": "Éditeur",
+  "menuFile": "Fichier",
+  "menuEdit": "Édition",
+  "menuView": "Présentation",
+  "menuWindow": "Fenêtre",
+  "menuClock": "jeu. 9:41"
 }
