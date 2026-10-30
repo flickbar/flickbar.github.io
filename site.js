@@ -51,8 +51,14 @@ function showStep(i, text) {
 }
 // Which way the arrow on the trackpad points, in degrees from pointing right.
 const ARROW = { left: [180], right: [0], up: [-90], down: [90], leftUp: [180, -90] };
-// Beside the fingers' path rather than on top of it.
-const showArrow = deg => { arrow.style.transform = `rotate(${deg}deg) translateY(-30px)`; arrow.classList.add('on'); };
+// Halfway along the fingers' move from a to b, and beside it, clear of both fingers.
+function showArrow(deg, [ax, ay, ax2, ay2], [bx, by, bx2, by2]) {
+  let x = (ax + ax2 + bx + bx2) / 4, y = (ay + ay2 + by + by2) / 4;
+  if (Math.round(Math.cos(deg * Math.PI / 180))) y -= 28;
+  else x += x < 0 ? 40 : -40;
+  arrow.style.transform = `translate(${x}px, ${y}px) rotate(${deg}deg)`;
+  arrow.classList.add('on');
+}
 
 const names = T.names, R = T.results;
 function target(g) {
@@ -111,9 +117,11 @@ async function play(g) {
   for (const f of [f1, f2]) f.style.transition = '';
   if (g === 'tap') for (let i = 0; i < 2; i++) { pad.classList.remove('down'); await wait(110); pad.classList.add('down'); await wait(110); }
   if (g === 'grid') { pad.classList.add('hold'); await wait(500); grid.classList.add('on'); }
+  let from = start[g] || [0, 0, 0, 0];
   for (const [i, s] of steps[g].entries()) {
-    if (ARROW[g]) showArrow(ARROW[g][i]);
+    if (ARROW[g]) showArrow(ARROW[g][i], from, s);
     place(s);
+    from = s;
     if (g === 'grid') set(preview, s[1] ? to : [33.33, 0, 33.34, 100]), preview.classList.add('on');
     await wait(380);
   }
