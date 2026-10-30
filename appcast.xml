@@ -4,19 +4,17 @@
     <title>Flickbar</title>
     <link>https://flickbar.github.io/</link>
     <item>
-      <title>Flickbar 0.10.0</title>
-      <pubDate>Fri, 30 Oct 2026 00:56:02 +0000</pubDate>
-      <sparkle:version>0.10.0</sparkle:version>
-      <sparkle:shortVersionString>0.10.0</sparkle:shortVersionString>
+      <title>Flickbar 0.11.0</title>
+      <pubDate>Fri, 30 Oct 2026 06:05:07 +0000</pubDate>
+      <sparkle:version>0.11.0</sparkle:version>
+      <sparkle:shortVersionString>0.11.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-      <link>https://github.com/flickbar/flickbar/releases/tag/v0.10.0</link>
+      <link>https://github.com/flickbar/flickbar/releases/tag/v0.11.0</link>
       <description sparkle:format="markdown"><![CDATA[### What's new
 
-- **Touch and hold works on a real trackpad.** Resting two fingers on a title bar now opens the layout grid. Before, it only worked in testing, because a resting hand sends a different signal than the test did.
-- **Gesture tutorial.** After you grant access, Flickbar offers a practice window that ticks off each main gesture as you do it. Open it again any time with *Gesture Tutorial…* in the menu.
-- **Updates inside the app.** Choose *Check for Updates…* in the menu, or turn on daily checks in Settings (off unless you turn it on). Updates are signed, and Flickbar installs only those that match its key. Homebrew users can keep using `brew upgrade`.
-- **New icon.** Rebuilt in Apple's Icon Composer, so it gets the Liquid Glass look on macOS 26 and later.]]></description>
-      <enclosure url="https://github.com/flickbar/flickbar/releases/download/v0.10.0/Flickbar-0.10.0.zip" sparkle:edSignature="/v/Z6Ab00vQdMNP+wB6V8yRPjAiKpVAHu3gWN5fWVyX743XuVQIGlmHV0eePY8tg2z1f0Dz5PopdwW9yfaE6Aw==" length="3787951" type="application/octet-stream"/>
+- **Français et فارسی.** Flickbar now speaks French and Persian. Persian is laid out right to left, and the layout pictures still point the right way. Flickbar follows your Mac's language, or choose one in *Settings → General → Language*.
+- **The original icon is back.** It's rebuilt in Apple's Icon Composer, so it gets the Liquid Glass look on macOS 26 and later.]]></description>
+      <enclosure url="https://github.com/flickbar/flickbar/releases/download/v0.11.0/Flickbar-0.11.0.zip" sparkle:edSignature="whHAOdehZahOhvzD+WLErbqVRKfwW2x+jGKYj/JDaojJcdK4r3RX8CjDnc31bQ8BjaYCjet4hFAJ5e3a8FAjDg==" length="3869130" type="application/octet-stream"/>
     </item>
   </channel>
 </rss>
