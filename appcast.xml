@@ -4,17 +4,31 @@
     <title>Flickbar</title>
     <link>https://flickbar.github.io/</link>
     <item>
-      <title>Flickbar 0.11.0</title>
-      <pubDate>Fri, 30 Oct 2026 06:05:07 +0000</pubDate>
-      <sparkle:version>0.11.0</sparkle:version>
-      <sparkle:shortVersionString>0.11.0</sparkle:shortVersionString>
+      <title>Flickbar 1.0.0</title>
+      <pubDate>Mon, 02 Nov 2026 06:26:29 +0000</pubDate>
+      <sparkle:version>1.0.0</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-      <link>https://github.com/flickbar/flickbar/releases/tag/v0.11.0</link>
-      <description sparkle:format="markdown"><![CDATA[### What's new
+      <link>https://github.com/flickbar/flickbar/releases/tag/v1.0.0</link>
+      <sparkle:fullReleaseNotesLink>https://github.com/flickbar/flickbar/blob/main/CHANGELOG.md</sparkle:fullReleaseNotesLink>
+      <description sparkle:format="markdown"><![CDATA[### Added
 
-- **Français et فارسی.** Flickbar now speaks French and Persian. Persian is laid out right to left, and the layout pictures still point the right way. Flickbar follows your Mac's language, or choose one in *Settings → General → Language*.
-- **The original icon is back.** It's rebuilt in Apple's Icon Composer, so it gets the Liquid Glass look on macOS 26 and later.]]></description>
-      <enclosure url="https://github.com/flickbar/flickbar/releases/download/v0.11.0/Flickbar-0.11.0.zip" sparkle:edSignature="whHAOdehZahOhvzD+WLErbqVRKfwW2x+jGKYj/JDaojJcdK4r3RX8CjDnc31bQ8BjaYCjet4hFAJ5e3a8FAjDg==" length="3869130" type="application/octet-stream"/>
+- **What's New.** After an update, Flickbar shows what changed in the new version. Open it again any time with *What's New…* in the menu or in *Settings → About*.
+- **Dark, Clear and Tinted icons.** The app icon now has versions for macOS's Dark, Clear and Tinted looks, made to stay easy to see on dark wallpapers and in the Dock.
+- **Website and support links.** *Settings → About* now links to Flickbar's website, and to a page where you can support Flickbar if you'd like to.
+
+### Changed
+
+- **Your settings are kept safe across updates.** Flickbar now keeps track of how its settings are stored, so future updates carry your gestures, shortcuts and options over.
+
+### Fixed
+
+- **Recording a keyboard shortcut works again.** Clicking a shortcut field and pressing keys now records them. On macOS 27, nothing was saved before.
+- **Settings no longer opens already recording.** Reopening Settings from the menu used to leave the first shortcut field waiting for keys, with all Flickbar shortcuts paused.
+- **Shortcuts work while a Flickbar window is in front.** Pressing a shortcut in Settings used to only beep; it now moves the window behind it.
+- **Removing a keyboard shortcut works.** The ✕ next to a shortcut now deletes it, and so does pressing Escape or Delete while recording.
+- **Shortcuts that couldn't be set now say why.** If a combination needs ⌃ or ⌥, is already used for another action, belongs to macOS or is held by another app, the field explains it. Your previous shortcut stays, and clicking the field lets you try another one. Combinations like ⌃⇧W and ⌘⌃R are saved. ⌘ alone (such as ⌘Q) is no longer accepted, since it would take over that key in every app.]]></description>
+      <enclosure url="https://github.com/flickbar/flickbar/releases/download/v1.0.0/Flickbar-1.0.0.zip" sparkle:edSignature="Fvzh9trvQnpULw8u8J1vVhGsB+f2zdnel78m9EwM7vtQ8kq8dntDbcGvNXRVyB3xoXQVyAsybvqa7VZD+lOKCA==" length="4094730" type="application/octet-stream"/>
     </item>
   </channel>
 </rss>
