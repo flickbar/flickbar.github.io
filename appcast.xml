@@ -4,31 +4,17 @@
     <title>Flickbar</title>
     <link>https://flickbar.github.io/</link>
     <item>
-      <title>Flickbar 1.0.0</title>
-      <pubDate>Mon, 02 Nov 2026 06:26:29 +0000</pubDate>
-      <sparkle:version>1.0.0</sparkle:version>
-      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <title>Flickbar 1.1.0</title>
+      <pubDate>Thu, 05 Nov 2026 02:31:16 +0000</pubDate>
+      <sparkle:version>1.1.0</sparkle:version>
+      <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-      <link>https://github.com/flickbar/flickbar/releases/tag/v1.0.0</link>
+      <link>https://github.com/flickbar/flickbar/releases/tag/v1.1.0</link>
       <sparkle:fullReleaseNotesLink>https://github.com/flickbar/flickbar/blob/main/CHANGELOG.md</sparkle:fullReleaseNotesLink>
       <description sparkle:format="markdown"><![CDATA[### Added
 
-- **What's New.** After an update, Flickbar shows what changed in the new version. Open it again any time with *What's New…* in the menu or in *Settings → About*.
-- **Dark, Clear and Tinted icons.** The app icon now has versions for macOS's Dark, Clear and Tinted looks, made to stay easy to see on dark wallpapers and in the Dock.
-- **Website and support links.** *Settings → About* now links to Flickbar's website, and to a page where you can support Flickbar if you'd like to.
-
-### Changed
-
-- **Your settings are kept safe across updates.** Flickbar now keeps track of how its settings are stored, so future updates carry your gestures, shortcuts and options over.
-
-### Fixed
-
-- **Recording a keyboard shortcut works again.** Clicking a shortcut field and pressing keys now records them. On macOS 27, nothing was saved before.
-- **Settings no longer opens already recording.** Reopening Settings from the menu used to leave the first shortcut field waiting for keys, with all Flickbar shortcuts paused.
-- **Shortcuts work while a Flickbar window is in front.** Pressing a shortcut in Settings used to only beep; it now moves the window behind it.
-- **Removing a keyboard shortcut works.** The ✕ next to a shortcut now deletes it, and so does pressing Escape or Delete while recording.
-- **Shortcuts that couldn't be set now say why.** If a combination needs ⌃ or ⌥, is already used for another action, belongs to macOS or is held by another app, the field explains it. Your previous shortcut stays, and clicking the field lets you try another one. Combinations like ⌃⇧W and ⌘⌃R are saved. ⌘ alone (such as ⌘Q) is no longer accepted, since it would take over that key in every app.]]></description>
-      <enclosure url="https://github.com/flickbar/flickbar/releases/download/v1.0.0/Flickbar-1.0.0.zip" sparkle:edSignature="Fvzh9trvQnpULw8u8J1vVhGsB+f2zdnel78m9EwM7vtQ8kq8dntDbcGvNXRVyB3xoXQVyAsybvqa7VZD+lOKCA==" length="4094730" type="application/octet-stream"/>
+- **Adjust swipes before lifting your fingers.** By default, reversing a swipe selects the new direction; perpendicular swipes combine into a quarter, and reversing the second swipe of a quarter swaps it (right, up, then down gives the bottom-right quarter). Any other swipe starts a new gesture. Turn off **Follow swipe direction changes** in **Settings → Gestures** to use swipe-back-to-cancel. Esc still cancels in either mode, and reversing a pinch always cancels.]]></description>
+      <enclosure url="https://github.com/flickbar/flickbar/releases/download/v1.1.0/Flickbar-1.1.0.zip" sparkle:edSignature="Fk260EaY+3HtogdUO5WuhqplFaTGyw1AEt5JTsJvwGfRCjeD76UdmlKP7Wvxh1GRrrN7l7aSKOes7WjraLUiDw==" length="4179554" type="application/octet-stream"/>
     </item>
   </channel>
 </rss>
