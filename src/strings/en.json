@@ -38,7 +38,7 @@
   "featuresIntro": "Your hand is already on the trackpad. Flickbar turns the title bar into a place to gesture, and leaves the rest of your scrolling alone.",
   "f1Title": "Every common layout is one swipe",
   "f1Text1": "Swipe left or right for a half, then keep swiping the same way for two thirds and one third. Swipe up to fill the screen, and down to minimize.",
-  "f1Text2": "While your fingers are down, a highlight glides to where the window will land and a light haptic tap confirms it. Press Esc before lifting to cancel.",
+  "f1Text2": "While your fingers are down, a highlight glides to where the window will land and a light haptic tap confirms it. Changed your mind? Swipe the other way before lifting to change the gesture, or press Esc to cancel.",
   "f1Alt": "Gestures settings, listing what each swipe does",
   "f2Title": "A grid for everything in between",
   "f2Text": "Rest two fingers on a title bar for a moment and a grid appears: three columns, each full height or split into a top and bottom half. Slide to a cell and lift to snap there.",
