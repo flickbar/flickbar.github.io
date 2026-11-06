@@ -279,3 +279,12 @@ footer .langs a[aria-current="page"] { color: var(--ink); font-weight: 700; }
 /* Persian letters run taller than Latin at the same size. */
 :lang(fa) h1 { font-size: clamp(2.2rem, 4.8vw, 3.7rem); line-height: 1.35; }
 :lang(fa) .lede, :lang(fa) p { line-height: 1.8; }
+footer .listed { display: table; margin-top: 16px; }
+footer .listed img { display: block; }
+footer .listed .on-dark { display: none; }
+:root[data-theme="dark"] footer .listed .on-light { display: none; }
+:root[data-theme="dark"] footer .listed .on-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) footer .listed .on-light { display: none; }
+  :root:not([data-theme="light"]) footer .listed .on-dark { display: block; }
+}
