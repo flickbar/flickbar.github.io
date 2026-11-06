@@ -1,7 +1,7 @@
 # flickbar.github.io
 
 The website for [Flickbar](https://github.com/flickbar/flickbar), served by GitHub Pages at
-<https://flickbar.github.io/>, in English, French (`/fr/`) and Persian (`/fa/`, right to left).
+<https://flickbar.parsakp.com/>, in English, French (`/fr/`) and Persian (`/fa/`, right to left).
 
 The pages are built from one template:
 
