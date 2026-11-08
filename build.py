@@ -12,7 +12,10 @@ import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-LANGS = {"en": ("index.html", "English"), "fr": ("fr/index.html", "Français"), "fa": ("fa/index.html", "فارسی")}
+BASE = "https://flickbar.parsakp.com/"
+LANGS = {"en": ("index.html", "English"), "fr": ("fr/index.html", "Français"), "es": ("es/index.html", "Español"),
+         "fa": ("fa/index.html", "فارسی"), "zh-Hans": ("zh-hans/index.html", "简体中文"),
+         "zh-Hant": ("zh-hant/index.html", "繁體中文")}
 # Keys that hold settings rather than text people read.
 SETTINGS = {"lang", "dir", "url", "home", "ogLocale", "font", "title"}
 # Arabic-only letters, hamza in any form, Arabic diacritics (including tanvin) and Arabic-Indic digits.
@@ -66,10 +69,27 @@ def lang_links(current):
     return "".join(links)
 
 
+def url(code):
+    return BASE + LANGS[code][0].removesuffix("index.html")
+
+
+def hreflangs():
+    links = [f'<link rel="alternate" hreflang="{code}" href="{url(code)}">' for code in LANGS]
+    return "\n".join(links + [f'<link rel="alternate" hreflang="x-default" href="{BASE}">'])
+
+
+def write_sitemaps():
+    alternates = "\n".join(f'    <xhtml:link rel="alternate" hreflang="{c}" href="{url(c)}"/>' for c in LANGS)
+    entries = "\n".join(f"  <url>\n    <loc>{url(code)}</loc>\n{alternates}\n  </url>" for code in LANGS)
+    (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+                                      f'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n{entries}\n</urlset>\n')
+    (ROOT / "sitemap.txt").write_text("".join(url(code) + "\n" for code in LANGS))
+
+
 def main():
     template = (ROOT / "src/page.html").read_text()
     used = set(re.findall(r"{{(\w+)}}", template))
-    generated = {"langLinksLong", "langName", "i18n"}
+    generated = {"langLinksLong", "langName", "i18n", "hreflangs"}
     all_strings = {code: json.loads((ROOT / f"src/strings/{code}.json").read_text()) for code in LANGS}
 
     def shape(value):
@@ -99,6 +119,7 @@ def main():
         values = dict(strings)
         values["langLinksLong"] = lang_links(code)
         values["langName"] = LANGS[code][1]
+        values["hreflangs"] = hreflangs()
         # Inside <script>, a "</" would end the element early.
         values["i18n"] = json.dumps(strings["i18n"], ensure_ascii=False).replace("</", "<\\/")
         page = re.sub(r"{{(\w+)}}", lambda m: values[m.group(1)], template)
@@ -106,6 +127,7 @@ def main():
         out.parent.mkdir(exist_ok=True)
         out.write_text(page)
         print(f"wrote {out.relative_to(ROOT)}")
+    write_sitemaps()
 
 
 if __name__ == "__main__":
