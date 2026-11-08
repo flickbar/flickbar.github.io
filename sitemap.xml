@@ -4,18 +4,54 @@
     <loc>https://flickbar.parsakp.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://flickbar.parsakp.com/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flickbar.parsakp.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flickbar.parsakp.com/es/"/>
     <xhtml:link rel="alternate" hreflang="fa" href="https://flickbar.parsakp.com/fa/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://flickbar.parsakp.com/zh-hans/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://flickbar.parsakp.com/zh-hant/"/>
   </url>
   <url>
     <loc>https://flickbar.parsakp.com/fr/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://flickbar.parsakp.com/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flickbar.parsakp.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flickbar.parsakp.com/es/"/>
     <xhtml:link rel="alternate" hreflang="fa" href="https://flickbar.parsakp.com/fa/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://flickbar.parsakp.com/zh-hans/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://flickbar.parsakp.com/zh-hant/"/>
+  </url>
+  <url>
+    <loc>https://flickbar.parsakp.com/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flickbar.parsakp.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://flickbar.parsakp.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flickbar.parsakp.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://flickbar.parsakp.com/fa/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://flickbar.parsakp.com/zh-hans/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://flickbar.parsakp.com/zh-hant/"/>
   </url>
   <url>
     <loc>https://flickbar.parsakp.com/fa/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://flickbar.parsakp.com/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flickbar.parsakp.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flickbar.parsakp.com/es/"/>
     <xhtml:link rel="alternate" hreflang="fa" href="https://flickbar.parsakp.com/fa/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://flickbar.parsakp.com/zh-hans/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://flickbar.parsakp.com/zh-hant/"/>
+  </url>
+  <url>
+    <loc>https://flickbar.parsakp.com/zh-hans/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flickbar.parsakp.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://flickbar.parsakp.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flickbar.parsakp.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://flickbar.parsakp.com/fa/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://flickbar.parsakp.com/zh-hans/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://flickbar.parsakp.com/zh-hant/"/>
+  </url>
+  <url>
+    <loc>https://flickbar.parsakp.com/zh-hant/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flickbar.parsakp.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://flickbar.parsakp.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flickbar.parsakp.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="fa" href="https://flickbar.parsakp.com/fa/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://flickbar.parsakp.com/zh-hans/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://flickbar.parsakp.com/zh-hant/"/>
   </url>
 </urlset>

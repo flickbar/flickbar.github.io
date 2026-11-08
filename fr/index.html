@@ -12,7 +12,10 @@
 <link rel="canonical" href="https://flickbar.parsakp.com/fr/">
 <link rel="alternate" hreflang="en" href="https://flickbar.parsakp.com/">
 <link rel="alternate" hreflang="fr" href="https://flickbar.parsakp.com/fr/">
+<link rel="alternate" hreflang="es" href="https://flickbar.parsakp.com/es/">
 <link rel="alternate" hreflang="fa" href="https://flickbar.parsakp.com/fa/">
+<link rel="alternate" hreflang="zh-Hans" href="https://flickbar.parsakp.com/zh-hans/">
+<link rel="alternate" hreflang="zh-Hant" href="https://flickbar.parsakp.com/zh-hant/">
 <link rel="alternate" hreflang="x-default" href="https://flickbar.parsakp.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Flickbar">
@@ -63,7 +66,7 @@
     <div class="tools">
       <details class="langpick">
         <summary class="chip" aria-label="Langues: Français"><svg class="i"><use href="#i-globe"/></svg><span>Français</span></summary>
-        <nav class="menu" aria-label="Langues"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr" aria-current="page">Français</a><a href="/fa/" hreflang="fa" lang="fa">فارسی</a></nav>
+        <nav class="menu" aria-label="Langues"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr" aria-current="page">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/fa/" hreflang="fa" lang="fa">فارسی</a><a href="/zh-hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="/zh-hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></nav>
       </details>
       <button class="chip" type="button" id="themeBtn" aria-label="Thème : automatique"><svg class="i"><use href="#i-auto"/></svg></button>
       <a class="chip" href="https://github.com/flickbar/flickbar" aria-label="Flickbar sur GitHub"><svg class="i solid"><use href="#i-github"/></svg></a>
@@ -142,7 +145,7 @@
         <p>Balayez vers la gauche ou la droite pour une moitié, puis continuez dans le même sens pour deux tiers et un tiers. Balayez vers le haut pour remplir l’écran, et vers le bas pour placer la fenêtre dans le Dock.</p>
         <p>Pendant que vos doigts sont posés, un repère glisse là où la fenêtre va se placer, et une légère vibration confirme le geste. Vous changez d’avis ? Balayez dans l’autre sens avant de lever les doigts pour changer de geste, ou appuyez sur Échap pour annuler.</p>
       </div>
-      <div class="art"><img src="/img/settings-gestures-fr.webp" width="600" height="740" alt="Réglages des gestes, avec l’action de chaque balayage" loading="lazy"></div>
+      <div class="art"><img src="/img/settings-gestures-fr.webp" width="600" height="770" alt="Réglages des gestes, avec l’action de chaque balayage" loading="lazy"></div>
     </div>
 
     <div class="feature">
@@ -177,8 +180,8 @@
     <div class="feature">
       <div>
         <h3>Réglé à votre façon</h3>
-        <p>Choisissez l’action de chaque geste, attribuez un raccourci clavier à n’importe quelle action, ajoutez de l’espace entre les fenêtres, et désactivez les gestes dans les apps qui ont besoin de leur barre de titre.</p>
-        <p>Maintenez ⌥ Option pour faire les gestes n’importe où dans une fenêtre, ou ⌘ pour l’envoyer sur le moniteur de ce côté. Flickbar parle français, anglais et persan.</p>
+        <p>Choisissez l’action de chaque geste, attribuez un raccourci clavier à n’importe quelle action, ajoutez de l’espace entre les fenêtres, et désactivez les gestes dans les apps qui ont besoin de leur barre de titre. Un geste peut aussi appuyer sur une combinaison de touches que vous enregistrez, comme ⌘C.</p>
+        <p>Maintenez ⌥ Option pour faire les gestes n’importe où dans une fenêtre, ou ⌘ pour l’envoyer sur le moniteur de ce côté. Flickbar parle français, anglais, espagnol, persan et chinois.</p>
       </div>
       <div class="art"><img src="/img/settings-general-fr.webp" width="600" height="580" alt="Réglages généraux : espace entre les fenêtres, repère, vibration, langue, ouverture à la connexion et mises à jour" loading="lazy"></div>
     </div>
@@ -241,7 +244,7 @@
     <details><summary>Est-ce que ça gêne le défilement ?</summary><p>Non. Seuls les gestes à deux doigts qui commencent sur une barre de titre ou une icône du Dock sont utilisés. Tout le reste du défilement et du zoom passe normalement, et les molettes de souris sont ignorées.</p></details>
     <details><summary>Faut-il un trackpad ?</summary><p>Pour les gestes, oui. Les raccourcis clavier fonctionnent avec n’importe quel clavier, vous pouvez donc aussi utiliser Flickbar avec une souris.</p></details>
     <details><summary>Pincer ou toucher deux fois ne marche pas</summary><p>Activez <em>Zoom avant ou arrière</em> et <em>Zoom intelligent</em> dans Réglages Système → Trackpad → Défilement et zoom. macOS n’envoie ces gestes que s’ils sont activés.</p></details>
-    <details><summary>Dans quelles langues ?</summary><p>Français, anglais et persan. Flickbar suit la langue de votre Mac, ou vous pouvez en choisir une dans <em>Réglages → Général → Langue</em>.</p></details>
+    <details><summary>Dans quelles langues ?</summary><p>Français, anglais, espagnol, persan et chinois (simplifié ou traditionnel). Flickbar suit la langue de votre Mac, ou vous pouvez en choisir une dans <em>Réglages → Général → Langue</em>.</p></details>
     <details><summary>Comment le mettre à jour ou le désinstaller ?</summary><p>Choisissez <em>Rechercher les mises à jour…</em> dans le menu de Flickbar, ou activez la recherche quotidienne dans les Réglages. Avec Homebrew, vous pouvez aussi lancer <code>brew upgrade --cask flickbar</code>. Pour le désinstaller, quittez Flickbar depuis son icône dans la barre des menus et placez-le dans la Corbeille, ou lancez <code>brew uninstall --cask flickbar</code>.</p></details>
   </div>
 </section>
@@ -282,7 +285,7 @@
     </nav>
     <nav aria-label="Langues">
       <h3>Langues</h3>
-      <div class="langs"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr" aria-current="page">Français</a><a href="/fa/" hreflang="fa" lang="fa">فارسی</a></div>
+      <div class="langs"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr" aria-current="page">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/fa/" hreflang="fa" lang="fa">فارسی</a><a href="/zh-hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="/zh-hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></div>
     </nav>
   </div>
 </footer>

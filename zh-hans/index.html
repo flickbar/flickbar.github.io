@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flickbar</title>
+<meta name="description" content="用触控板手势在窗口标题栏上吸附、调整大小和移动 macOS 窗口。免费且开源。">
+<meta name="author" content="Parsa Kamalipour">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141a23" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://flickbar.parsakp.com/zh-hans/">
+<link rel="alternate" hreflang="en" href="https://flickbar.parsakp.com/">
+<link rel="alternate" hreflang="fr" href="https://flickbar.parsakp.com/fr/">
+<link rel="alternate" hreflang="es" href="https://flickbar.parsakp.com/es/">
+<link rel="alternate" hreflang="fa" href="https://flickbar.parsakp.com/fa/">
+<link rel="alternate" hreflang="zh-Hans" href="https://flickbar.parsakp.com/zh-hans/">
+<link rel="alternate" hreflang="zh-Hant" href="https://flickbar.parsakp.com/zh-hant/">
+<link rel="alternate" hreflang="x-default" href="https://flickbar.parsakp.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flickbar">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="Flickbar">
+<meta property="og:description" content="用触控板手势在窗口标题栏上吸附、调整大小和移动 macOS 窗口。免费且开源。">
+<meta property="og:url" content="https://flickbar.parsakp.com/zh-hans/">
+<meta property="og:image" content="https://flickbar.parsakp.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<script>
+  // Before first paint, so a saved theme never flashes the other one.
+  try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Flickbar", "inLanguage": "zh-Hans",
+ "operatingSystem": "macOS 14+", "applicationCategory": "UtilitiesApplication",
+ "description": "用触控板手势在窗口标题栏上吸附、调整大小和移动 macOS 窗口。免费且开源。",
+ "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+ "author": {"@type": "Person", "name": "Parsa Kamalipour", "url": "https://github.com/benymaxparsa"},
+ "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+ "downloadUrl": "https://github.com/flickbar/flickbar/releases/latest",
+ "screenshot": "https://flickbar.parsakp.com/img/settings-gestures-zh-Hans.webp"}
+</script>
+<link rel="preload" href="/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.9-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+</svg>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="/zh-hans/"><img src="/img/icon-64.png" alt="" width="30" height="30">Flickbar</a>
+    <a class="hide-sm" href="#features">功能</a>
+    <a class="hide-sm" href="#gestures">手势</a>
+    <a class="hide-sm" href="#faq">常见问题</a>
+    <div class="tools">
+      <details class="langpick">
+        <summary class="chip" aria-label="语言: 简体中文"><svg class="i"><use href="#i-globe"/></svg><span>简体中文</span></summary>
+        <nav class="menu" aria-label="语言"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/fa/" hreflang="fa" lang="fa">فارسی</a><a href="/zh-hans/" hreflang="zh-Hans" lang="zh-Hans" aria-current="page">简体中文</a><a href="/zh-hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></nav>
+      </details>
+      <button class="chip" type="button" id="themeBtn" aria-label="主题：自动"><svg class="i"><use href="#i-auto"/></svg></button>
+      <a class="chip" href="https://github.com/flickbar/flickbar" aria-label="GitHub 上的 Flickbar"><svg class="i solid"><use href="#i-github"/></svg></a>
+    </div>
+    <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">下载</a>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>轻轻一拨，<span style="white-space:nowrap">窗口就位。</span></h1>
+      <p class="lede">在标题栏上用两指轻扫，即可把 Mac 窗口吸附到二分之一、三分之一或四分之一，填满屏幕，或送到另一台显示器。</p>
+      <div class="cta">
+        <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">下载 Mac 版</a>
+        <span class="meta">免费且开源<br>需要 macOS 14 或更高版本</span>
+      </div>
+      <div class="cmd"><code>brew install --cask flickbar/tap/flickbar</code><button type="button" class="copy">拷贝</button></div>
+    </div>
+
+    <div>
+      <div class="desk" aria-hidden="true">
+        <div class="menubar">
+          <b>编辑器</b><span>文件</span><span>编辑</span><span class="more">显示</span><span class="more">窗口</span>
+          <span class="extras">
+            <svg viewBox="0 0 16 12"><path d="M1 4.2a10 10 0 0 1 14 0M3.4 6.7a6.5 6.5 0 0 1 9.2 0M5.8 9.1a3 3 0 0 1 4.4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 24 12"><rect x="0.7" y="0.7" width="20" height="10.6" rx="3" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.6" fill="currentColor"/><path d="M22.4 4v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/></svg>
+            <span>周四 9:41</span>
+          </span>
+        </div>
+        <div class="mdock"><i class="a1"></i><i class="a2 run"></i><i class="a3"></i><i class="a4"></i><i class="a5"></i><s></s><span class="slot" id="slot"><i></i></span><i class="a6"></i></div>
+        <div class="screen">
+          <div class="grid" id="grid"><div></div><div></div><div></div></div>
+          <div class="preview" id="preview"></div>
+          <div class="win" id="win">
+            <div class="titlebar"><i></i><i></i><i></i><span class="wtitle">我的文稿</span></div>
+            <div class="doc"><b style="width:70%"></b><b style="width:90%"></b><b style="width:55%"></b><b style="width:80%"></b></div>
+          </div>
+          <svg class="pointer" id="pointer" viewBox="0 0 14 20"><path d="M1 1v15l4-4 3 7 3-1.4-3-6.6h5.5z" fill="#15202e" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          <span class="tag" id="tag">标题栏</span>
+        </div>
+      </div>
+      <div class="below">
+        <figure class="padwrap" aria-hidden="true">
+          <div class="pad" id="pad"><span class="finger"></span><span class="finger"></span>
+            <svg class="arrow" id="arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+          <figcaption>触控板</figcaption>
+        </figure>
+        <ol class="steps" id="steps" aria-live="off"><li>将指针放在窗口的标题栏上</li><li>在触控板上用两指轻扫或捏合</li><li>窗口吸附到位</li></ol>
+      </div>
+      <p class="pick">选一个手势看看效果：</p>
+      <div class="controls" id="controls">
+        <button type="button" data-g="left">向左轻扫</button>
+        <button type="button" data-g="right">向右轻扫</button>
+        <button type="button" data-g="up">向上轻扫</button>
+        <button type="button" data-g="down">向下轻扫</button>
+        <button type="button" data-g="leftUp">先向左，再向上</button>
+        <button type="button" data-g="tap">轻点两下</button>
+        <button type="button" data-g="pinchOut">双指张开</button>
+        <button type="button" data-g="pinchIn">双指捏合</button>
+        <button type="button" data-g="grid">触摸并按住</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <h2>排列窗口，不必去够键盘</h2>
+    <p class="intro">你的手本来就在触控板上。Flickbar 把标题栏变成做手势的地方，其余的滚动完全不受影响。</p>
+
+    <div class="feature">
+      <div>
+        <h3>常用布局，一次轻扫</h3>
+        <p>向左或向右轻扫，得到二分之一；沿同一方向继续轻扫，依次变为三分之二和三分之一。向上轻扫填满屏幕，向下轻扫最小化。</p>
+        <p>手指按在触控板上时，高亮区域会滑到窗口将要到达的位置，并有轻微的触感反馈来确认。改主意了？抬起手指前向相反方向轻扫即可更改手势，或按 Esc 取消。</p>
+      </div>
+      <div class="art"><img src="/img/settings-gestures-zh-Hans.webp" width="600" height="770" alt="“手势”设置，列出每种轻扫的作用" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>其余布局，用网格搞定</h3>
+        <p>在标题栏上将两指停放片刻，会出现一个网格：三列，每列可以是整列高度，也可以分成上下两半。滑到某个格子再抬起手指，窗口就吸附到那里。</p>
+      </div>
+      <div class="art"><div class="mini" aria-hidden="true">
+        <div><b class="full"></b></div><div><b class="pick"></b><b></b></div><div><b></b><b></b></div>
+      </div></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>程序坞也支持手势</h3>
+        <p>在程序坞中某个 App 的图标上向上轻扫可显示它的所有窗口，向下轻扫可隐藏它，向两侧轻扫可把它的下一个窗口调到前面，双指捏合则退出该 App。在已最小化窗口的缩略图上，任何标题栏手势都会把它还原并吸附。</p>
+      </div>
+      <div class="art"><div class="dockart" aria-hidden="true">
+        <div class="stack"><span></span><span></span><span></span></div>
+        <div class="dock"><span></span><span></span><span class="on"></span><span></span><span></span></div>
+      </div></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>一分钟学会</h3>
+        <p>授予权限后，会出现一个练习窗口，带你过一遍主要手势，你每完成一个就会打上勾。随时可以从菜单中再次打开它。</p>
+      </div>
+      <div class="art"><img src="/img/tutorial-zh-Hans.webp" width="520" height="468" alt="手势教程，前三步已打勾" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>按你的方式设置</h3>
+        <p>选择每个手势的作用，给任意操作设置键盘快捷键，在吸附的窗口之间留出间距，并在需要独占标题栏的 App 中关闭手势。手势还可以按下你录制的组合键，例如 ⌘C。</p>
+        <p>按住 ⌥ Option 可在窗口内任意位置做手势，按住 ⌘ 则把窗口送到那一侧的显示器。Flickbar 支持英语、法语、西班牙语、波斯语和中文。</p>
+      </div>
+      <div class="art"><img src="/img/settings-general-zh-Hans.webp" width="600" height="580" alt="“通用”设置：窗口间距、预览、触感反馈、语言、登录时打开和更新" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="gestures">
+  <div class="wrap">
+    <h2>所有手势</h2>
+    <p class="intro">将指针放在窗口标题栏或程序坞图标上，然后用两根手指操作。每个手势都可以在“设置”中重新指定。</p>
+    <div class="cols">
+      <table>
+        <caption>在标题栏上</caption>
+        <tr><td>向左或向右轻扫</td><td>左半边或右半边；重复可依次得到⅔、⅓</td></tr>
+        <tr><td>先横向轻扫，再向上或向下</td><td>对应的四分之一</td></tr>
+        <tr><td>向上轻扫</td><td>填满屏幕；重复可得到中间三分之一</td></tr>
+        <tr><td>向下轻扫</td><td>最小化（也可设为还原吸附前的大小）</td></tr>
+        <tr><td>轻点两下</td><td>将窗口居中</td></tr>
+        <tr><td>双指张开</td><td>切换全屏幕</td></tr>
+        <tr><td>双指捏合</td><td>关闭窗口</td></tr>
+        <tr><td>按住 ⌘ 并轻扫</td><td>移到那一侧的显示器</td></tr>
+        <tr><td>触摸、按住，然后移动</td><td>从网格中选取布局</td></tr>
+      </table>
+      <div>
+        <table>
+          <caption>在程序坞图标上</caption>
+          <tr><td>向上轻扫</td><td>显示该 App 的所有窗口</td></tr>
+          <tr><td>向下轻扫</td><td>隐藏该 App</td></tr>
+          <tr><td>向左或向右轻扫</td><td>将该 App 的下一个窗口调到前面</td></tr>
+          <tr><td>双指捏合</td><td>退出该 App</td></tr>
+        </table>
+        <p>每个操作也都可以设置键盘快捷键。一开始一个都没有设置，所以 Flickbar 绝不会占用你已经在用的按键。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap facts">
+    <div>
+      <h3>数据不会离开你的 Mac</h3>
+      <p>没有任何使用情况分析，也不需要账户。检查更新默认关闭，打开后也只会发送 Flickbar 的版本号。</p>
+    </div>
+    <div>
+      <h3>已签名并经过公证</h3>
+      <p>发行版使用开发者 ID 签名并经 Apple 公证，只有与 Flickbar 自己的签名密钥匹配的更新才会安装。</p>
+    </div>
+    <div>
+      <h3>开源</h3>
+      <p>由 <a href="https://github.com/benymaxparsa">Parsa Kamalipour</a> 制作，采用 GPL 许可。你可以阅读代码、自行构建，或者<a href="https://github.com/flickbar/flickbar">提交 pull request</a>。</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <h2>常见问题</h2>
+    <details><summary>真的免费吗？</summary><p>是的。没有试用期、付费版或账户。Flickbar 是采用 GPL-3.0-or-later 许可的自由软件。</p></details>
+    <details><summary>为什么要求辅助功能权限？</summary><p>macOS 要求任何移动或调整其他 App 窗口大小的 App 获得此权限。Flickbar 仅用它来找到指针下方的窗口或程序坞图标，并在你做手势或按下快捷键时对其执行操作。</p></details>
+    <details><summary>会妨碍正常滚动吗？</summary><p>不会。只有从标题栏或程序坞图标开始的两指手势才会被使用。其余所有滚动和缩放都原样传递，鼠标滚轮也会被忽略。</p></details>
+    <details><summary>需要触控板吗？</summary><p>使用手势时需要。键盘快捷键适用于任何键盘，所以用鼠标也能使用 Flickbar。</p></details>
+    <details><summary>双指捏合或轻点两下没反应</summary><p>请在“系统设置 → 触控板 → 滚动与缩放”中打开<em>放大或缩小</em>和<em>智能缩放</em>。只有它们处于打开状态时，macOS 才会发送这些手势。</p></details>
+    <details><summary>支持哪些语言？</summary><p>英语、法语、西班牙语、波斯语和中文（简体或繁体）。Flickbar 会跟随你的 Mac 语言，你也可以在<em>设置 → 通用 → 语言</em>中选择一种。</p></details>
+    <details><summary>如何更新或卸载？</summary><p>在 Flickbar 的菜单中选取<em>检查更新…</em>，或在“设置”中打开每日检查。使用 Homebrew 时也可以运行 <code>brew upgrade --cask flickbar</code>。卸载时，从菜单栏图标退出 Flickbar 并将其移到废纸篓，或运行 <code>brew uninstall --cask flickbar</code>。</p></details>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <h2>让你的标题栏派上用场</h2>
+    <p>免费、开源，一分钟即可上手。</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">下载 Mac 版</a>
+    </div>
+    <div class="cmd"><code>brew install --cask flickbar/tap/flickbar</code><button type="button" class="copy">拷贝</button></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h3>Flickbar</h3>
+      <p>由 <a href="https://github.com/benymaxparsa">Parsa Kamalipour</a> 制作。采用 <a href="https://github.com/flickbar/flickbar/blob/main/LICENSE">GPL-3.0-or-later</a> 许可的自由软件。</p>
+      <div class="seg" role="group" aria-label="主题" id="themeSeg">
+        <button type="button" data-theme-set="auto">自动</button>
+        <button type="button" data-theme-set="light">浅色</button>
+        <button type="button" data-theme-set="dark">深色</button>
+      </div>
+      <a class="listed" href="https://macbrowse.com"><img class="on-light" src="https://macbrowse.com/badge/listed-light.svg" alt="Listed on Mac Browse" width="137" height="30"><img class="on-dark" src="https://macbrowse.com/badge/listed-dark.svg" alt="Listed on Mac Browse" width="137" height="30"></a>
+    </div>
+    <nav aria-label="项目">
+      <h3>项目</h3>
+      <a href="https://github.com/flickbar/flickbar">源代码</a>
+      <a href="https://github.com/flickbar/flickbar/releases">发行版</a>
+      <a href="https://github.com/flickbar/homebrew-tap">Homebrew tap</a>
+      <a href="https://github.com/flickbar/flickbar/issues">报告问题</a>
+      <a href="https://github.com/flickbar/flickbar#privacy">隐私</a>
+      <a href="https://github.com/sponsors/benymaxparsa">在 GitHub 上赞助</a>
+      <a href="https://buymeacoffee.com/parsakamalipour">请我喝杯咖啡</a>
+    </nav>
+    <nav aria-label="语言">
+      <h3>语言</h3>
+      <div class="langs"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es">Español</a><a href="/fa/" hreflang="fa" lang="fa">فارسی</a><a href="/zh-hans/" hreflang="zh-Hans" lang="zh-Hans" aria-current="page">简体中文</a><a href="/zh-hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></div>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/json" id="i18n">{"copy": "拷贝", "copied": "已拷贝", "selectToCopy": "选择后拷贝", "theme": {"auto": "主题：自动", "light": "主题：浅色", "dark": "主题：深色"}, "names": {"left": "向左轻扫", "right": "向右轻扫", "up": "向上轻扫", "down": "向下轻扫", "leftUp": "先向左轻扫，再向上", "tap": "轻点两下", "pinchOut": "双指张开", "pinchIn": "双指捏合", "grid": "触摸、按住，然后移动"}, "results": {"left": ["左半边", "左侧三分之二", "左侧三分之一"], "right": ["右半边", "右侧三分之二", "右侧三分之一"], "middleThird": "中间三分之一", "fill": "填满屏幕", "topLeft": "左上四分之一", "minimize": "最小化", "center": "将窗口居中", "leaveFull": "退出全屏幕", "full": "全屏幕", "close": "关闭窗口", "grid": "中间一列，上半部分"}}</script>
+<script src="/site.js"></script>
+</body>
+</html>

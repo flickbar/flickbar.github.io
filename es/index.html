@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flickbar</title>
+<meta name="description" content="Ajusta, cambia el tamaño y mueve las ventanas de macOS con gestos del trackpad en sus barras de título. Gratis y de código abierto.">
+<meta name="author" content="Parsa Kamalipour">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#eef1f5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141a23" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://flickbar.parsakp.com/es/">
+<link rel="alternate" hreflang="en" href="https://flickbar.parsakp.com/">
+<link rel="alternate" hreflang="fr" href="https://flickbar.parsakp.com/fr/">
+<link rel="alternate" hreflang="es" href="https://flickbar.parsakp.com/es/">
+<link rel="alternate" hreflang="fa" href="https://flickbar.parsakp.com/fa/">
+<link rel="alternate" hreflang="zh-Hans" href="https://flickbar.parsakp.com/zh-hans/">
+<link rel="alternate" hreflang="zh-Hant" href="https://flickbar.parsakp.com/zh-hant/">
+<link rel="alternate" hreflang="x-default" href="https://flickbar.parsakp.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Flickbar">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Flickbar">
+<meta property="og:description" content="Ajusta, cambia el tamaño y mueve las ventanas de macOS con gestos del trackpad en sus barras de título. Gratis y de código abierto.">
+<meta property="og:url" content="https://flickbar.parsakp.com/es/">
+<meta property="og:image" content="https://flickbar.parsakp.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/icon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<script>
+  // Before first paint, so a saved theme never flashes the other one.
+  try { const t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Flickbar", "inLanguage": "es",
+ "operatingSystem": "macOS 14+", "applicationCategory": "UtilitiesApplication",
+ "description": "Ajusta, cambia el tamaño y mueve las ventanas de macOS con gestos del trackpad en sus barras de título. Gratis y de código abierto.",
+ "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+ "author": {"@type": "Person", "name": "Parsa Kamalipour", "url": "https://github.com/benymaxparsa"},
+ "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+ "downloadUrl": "https://github.com/flickbar/flickbar/releases/latest",
+ "screenshot": "https://flickbar.parsakp.com/img/settings-gestures-es.webp"}
+</script>
+<link rel="preload" href="/fonts/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.9-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></symbol>
+</svg>
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="/es/"><img src="/img/icon-64.png" alt="" width="30" height="30">Flickbar</a>
+    <a class="hide-sm" href="#features">Funciones</a>
+    <a class="hide-sm" href="#gestures">Gestos</a>
+    <a class="hide-sm" href="#faq">Preguntas</a>
+    <div class="tools">
+      <details class="langpick">
+        <summary class="chip" aria-label="Idiomas: Español"><svg class="i"><use href="#i-globe"/></svg><span>Español</span></summary>
+        <nav class="menu" aria-label="Idiomas"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es" aria-current="page">Español</a><a href="/fa/" hreflang="fa" lang="fa">فارسی</a><a href="/zh-hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="/zh-hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></nav>
+      </details>
+      <button class="chip" type="button" id="themeBtn" aria-label="Tema: automático"><svg class="i"><use href="#i-auto"/></svg></button>
+      <a class="chip" href="https://github.com/flickbar/flickbar" aria-label="Flickbar en GitHub"><svg class="i solid"><use href="#i-github"/></svg></a>
+    </div>
+    <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">Descargar</a>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1>Coloca las ventanas con un gesto.</h1>
+      <p class="lede">Desliza dos dedos sobre una barra de título para ajustar una ventana del Mac a una mitad, un tercio o un cuarto, llenar la pantalla o enviarla a otra pantalla.</p>
+      <div class="cta">
+        <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">Descargar para Mac</a>
+        <span class="meta">Gratis y de código abierto<br>macOS 14 o posterior</span>
+      </div>
+      <div class="cmd"><code>brew install --cask flickbar/tap/flickbar</code><button type="button" class="copy">Copiar</button></div>
+    </div>
+
+    <div>
+      <div class="desk" aria-hidden="true">
+        <div class="menubar">
+          <b>Editor</b><span>Archivo</span><span>Edición</span><span class="more">Visualización</span><span class="more">Ventana</span>
+          <span class="extras">
+            <svg viewBox="0 0 16 12"><path d="M1 4.2a10 10 0 0 1 14 0M3.4 6.7a6.5 6.5 0 0 1 9.2 0M5.8 9.1a3 3 0 0 1 4.4 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 24 12"><rect x="0.7" y="0.7" width="20" height="10.6" rx="3" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.5"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.6" fill="currentColor"/><path d="M22.4 4v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/></svg>
+            <span>jue 9:41</span>
+          </span>
+        </div>
+        <div class="mdock"><i class="a1"></i><i class="a2 run"></i><i class="a3"></i><i class="a4"></i><i class="a5"></i><s></s><span class="slot" id="slot"><i></i></span><i class="a6"></i></div>
+        <div class="screen">
+          <div class="grid" id="grid"><div></div><div></div><div></div></div>
+          <div class="preview" id="preview"></div>
+          <div class="win" id="win">
+            <div class="titlebar"><i></i><i></i><i></i><span class="wtitle">Mi documento</span></div>
+            <div class="doc"><b style="width:70%"></b><b style="width:90%"></b><b style="width:55%"></b><b style="width:80%"></b></div>
+          </div>
+          <svg class="pointer" id="pointer" viewBox="0 0 14 20"><path d="M1 1v15l4-4 3 7 3-1.4-3-6.6h5.5z" fill="#15202e" stroke="#fff" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          <span class="tag" id="tag">Barra de título</span>
+        </div>
+      </div>
+      <div class="below">
+        <figure class="padwrap" aria-hidden="true">
+          <div class="pad" id="pad"><span class="finger"></span><span class="finger"></span>
+            <svg class="arrow" id="arrow" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+          <figcaption>Trackpad</figcaption>
+        </figure>
+        <ol class="steps" id="steps" aria-live="off"><li>Coloca el puntero sobre la barra de título de una ventana</li><li>Desliza o pellizca con dos dedos en el trackpad</li><li>La ventana se ajusta en su lugar</li></ol>
+      </div>
+      <p class="pick">Elige un gesto para verlo:</p>
+      <div class="controls" id="controls">
+        <button type="button" data-g="left">Deslizar a la izquierda</button>
+        <button type="button" data-g="right">Deslizar a la derecha</button>
+        <button type="button" data-g="up">Deslizar hacia arriba</button>
+        <button type="button" data-g="down">Deslizar hacia abajo</button>
+        <button type="button" data-g="leftUp">Izquierda y luego arriba</button>
+        <button type="button" data-g="tap">Tocar dos veces</button>
+        <button type="button" data-g="pinchOut">Separar los dedos</button>
+        <button type="button" data-g="pinchIn">Pellizcar</button>
+        <button type="button" data-g="grid">Tocar y mantener</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <h2>Organiza las ventanas sin tocar el teclado</h2>
+    <p class="intro">Tu mano ya está en el trackpad. Flickbar convierte la barra de título en un lugar para hacer gestos y respeta el resto del desplazamiento.</p>
+
+    <div class="feature">
+      <div>
+        <h3>Cada disposición habitual, a un solo deslizamiento</h3>
+        <p>Desliza a la izquierda o a la derecha para ocupar una mitad y sigue deslizando en el mismo sentido para pasar a dos tercios y luego a un tercio. Desliza hacia arriba para llenar la pantalla y hacia abajo para minimizar.</p>
+        <p>Mientras tus dedos están apoyados, un resaltado se desplaza hasta donde irá la ventana y un ligero toque háptico lo confirma. ¿Cambiaste de idea? Desliza en el sentido contrario antes de levantar los dedos para cambiar el gesto, o pulsa Esc para cancelar.</p>
+      </div>
+      <div class="art"><img src="/img/settings-gestures-es.webp" width="600" height="770" alt="Ajustes de gestos, con lo que hace cada deslizamiento" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>Una cuadrícula para todo lo demás</h3>
+        <p>Mantén dos dedos quietos un momento sobre una barra de título y aparecerá una cuadrícula: tres columnas, cada una de altura completa o dividida en mitad superior e inferior. Desliza hasta una celda y levanta los dedos para ajustar la ventana allí.</p>
+      </div>
+      <div class="art"><div class="mini" aria-hidden="true">
+        <div><b class="full"></b></div><div><b class="pick"></b><b></b></div><div><b></b><b></b></div>
+      </div></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>El Dock también escucha</h3>
+        <p>Desliza hacia arriba sobre el icono de una app en el Dock para mostrar todas sus ventanas, hacia abajo para ocultarla, hacia un lado para traer al frente su siguiente ventana, o pellizca para salir de ella. En la miniatura de una ventana minimizada, cualquier gesto de la barra de título la restaura y la ajusta.</p>
+      </div>
+      <div class="art"><div class="dockart" aria-hidden="true">
+        <div class="stack"><span></span><span></span><span></span></div>
+        <div class="dock"><span></span><span></span><span class="on"></span><span></span><span></span></div>
+      </div></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>Aprende en un minuto</h3>
+        <p>Tras conceder el acceso, una ventana de práctica te guía por los gestos principales y marca cada uno cuando lo completas. Vuelve a abrirla cuando quieras desde el menú.</p>
+      </div>
+      <div class="art"><img src="/img/tutorial-es.webp" width="520" height="468" alt="El tutorial de gestos, con los tres primeros pasos marcados" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div>
+        <h3>Configúralo a tu manera</h3>
+        <p>Elige lo que hace cada gesto, asigna un atajo de teclado a cualquier acción, añade espacio entre las ventanas ajustadas y desactiva los gestos en las apps que necesitan sus barras de título para ellas solas. Un gesto también puede pulsar una combinación de teclas que grabes, como ⌘C.</p>
+        <p>Mantén pulsada ⌥ Opción para usar gestos en cualquier parte de una ventana, o ⌘ para enviarla a la pantalla de ese lado. Flickbar está disponible en inglés, francés, español, persa y chino.</p>
+      </div>
+      <div class="art"><img src="/img/settings-general-es.webp" width="600" height="580" alt="Ajustes generales: espacio entre ventanas, vista previa, respuesta háptica, idioma, abrir al iniciar sesión y actualizaciones" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section id="gestures">
+  <div class="wrap">
+    <h2>Todos los gestos</h2>
+    <p class="intro">Coloca el puntero sobre la barra de título de una ventana o sobre un icono del Dock y usa dos dedos. Cada uno se puede reasignar en Ajustes.</p>
+    <div class="cols">
+      <table>
+        <caption>En una barra de título</caption>
+        <tr><td>Deslizar a la izquierda o a la derecha</td><td>Mitad izquierda o derecha; repite para ⅔ y luego ⅓</td></tr>
+        <tr><td>Deslizar hacia un lado y luego hacia arriba o abajo</td><td>Ese cuarto</td></tr>
+        <tr><td>Deslizar hacia arriba</td><td>Llenar la pantalla; repite para el tercio central</td></tr>
+        <tr><td>Deslizar hacia abajo</td><td>Minimizar (o restaurar el tamaño anterior al ajuste, si lo prefieres)</td></tr>
+        <tr><td>Tocar dos veces</td><td>Centrar la ventana</td></tr>
+        <tr><td>Separar los dedos</td><td>Activar o desactivar la pantalla completa</td></tr>
+        <tr><td>Pellizcar</td><td>Cerrar la ventana</td></tr>
+        <tr><td>Mantener pulsada ⌘ y deslizar</td><td>Mover a la pantalla de ese lado</td></tr>
+        <tr><td>Tocar, mantener y mover</td><td>Elegir una disposición en la cuadrícula</td></tr>
+      </table>
+      <div>
+        <table>
+          <caption>En un icono del Dock</caption>
+          <tr><td>Deslizar hacia arriba</td><td>Mostrar todas las ventanas de la app</td></tr>
+          <tr><td>Deslizar hacia abajo</td><td>Ocultar la app</td></tr>
+          <tr><td>Deslizar a la izquierda o a la derecha</td><td>Traer al frente la siguiente ventana de la app</td></tr>
+          <tr><td>Pellizcar</td><td>Salir de la app</td></tr>
+        </table>
+        <p>Cada acción también puede tener un atajo de teclado. Al principio no hay ninguno, así que Flickbar nunca se apodera de teclas que ya usas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap facts">
+    <div>
+      <h3>Nada sale de tu Mac</h3>
+      <p>Sin telemetría ni cuenta. La búsqueda de actualizaciones está desactivada hasta que la actives, y solo envía el número de versión de Flickbar.</p>
+    </div>
+    <div>
+      <h3>Firmado y notarizado</h3>
+      <p>Las versiones están firmadas con un ID de desarrollador y notarizadas por Apple, y las actualizaciones solo se instalan si coinciden con la clave de firma de Flickbar.</p>
+    </div>
+    <div>
+      <h3>Código abierto</h3>
+      <p>Creado por <a href="https://github.com/benymaxparsa">Parsa Kamalipour</a> y con licencia GPL. Lee el código, compílalo tú mismo o <a href="https://github.com/flickbar/flickbar">envía una pull request</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq">
+    <h2>Preguntas</h2>
+    <details><summary>¿De verdad es gratis?</summary><p>Sí. No hay prueba, nivel de pago ni cuenta. Flickbar es software libre con licencia GPL-3.0-or-later.</p></details>
+    <details><summary>¿Por qué pide acceso a Accesibilidad?</summary><p>macOS lo exige a cualquier app que mueva o cambie el tamaño de las ventanas de otras apps. Flickbar solo lo usa para encontrar la ventana o el icono del Dock bajo el puntero y actuar sobre ellos cuando haces un gesto o pulsas un atajo.</p></details>
+    <details><summary>¿Interferirá con el desplazamiento normal?</summary><p>No. Solo se usan los gestos con dos dedos que empiezan en una barra de título o un icono del Dock. El resto del desplazamiento y del zoom pasa intacto, y las ruedas del ratón se ignoran.</p></details>
+    <details><summary>¿Necesito un trackpad?</summary><p>Para los gestos, sí. Los atajos de teclado funcionan con cualquier teclado, así que también puedes usar Flickbar con un ratón.</p></details>
+    <details><summary>El pellizco o el toque doble no funcionan</summary><p>Activa <em>Ampliar o reducir</em> y <em>Zoom inteligente</em> en Ajustes del Sistema → Trackpad → Desplazamiento y zoom. macOS solo envía esos gestos cuando están activados.</p></details>
+    <details><summary>¿En qué idiomas está disponible?</summary><p>Inglés, francés, español, persa y chino (simplificado o tradicional). Flickbar sigue el idioma de tu Mac, o puedes elegir uno en <em>Ajustes → General → Idioma</em>.</p></details>
+    <details><summary>¿Cómo lo actualizo o lo desinstalo?</summary><p>Elige <em>Buscar actualizaciones…</em> en el menú de Flickbar, o activa la búsqueda diaria en Ajustes. Con Homebrew también puedes ejecutar <code>brew upgrade --cask flickbar</code>. Para desinstalarlo, sal de Flickbar desde su icono de la barra de menús y muévelo a la Papelera, o ejecuta <code>brew uninstall --cask flickbar</code>.</p></details>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <h2>Dale algo que hacer a tus barras de título</h2>
+    <p>Gratis, de código abierto y listo en un minuto.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/flickbar/flickbar/releases/latest">Descargar para Mac</a>
+    </div>
+    <div class="cmd"><code>brew install --cask flickbar/tap/flickbar</code><button type="button" class="copy">Copiar</button></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h3>Flickbar</h3>
+      <p>Creado por <a href="https://github.com/benymaxparsa">Parsa Kamalipour</a>. Software libre bajo la licencia <a href="https://github.com/flickbar/flickbar/blob/main/LICENSE">GPL-3.0-or-later</a>.</p>
+      <div class="seg" role="group" aria-label="Tema" id="themeSeg">
+        <button type="button" data-theme-set="auto">Automático</button>
+        <button type="button" data-theme-set="light">Claro</button>
+        <button type="button" data-theme-set="dark">Oscuro</button>
+      </div>
+      <a class="listed" href="https://macbrowse.com"><img class="on-light" src="https://macbrowse.com/badge/listed-light.svg" alt="Listed on Mac Browse" width="137" height="30"><img class="on-dark" src="https://macbrowse.com/badge/listed-dark.svg" alt="Listed on Mac Browse" width="137" height="30"></a>
+    </div>
+    <nav aria-label="Proyecto">
+      <h3>Proyecto</h3>
+      <a href="https://github.com/flickbar/flickbar">Código fuente</a>
+      <a href="https://github.com/flickbar/flickbar/releases">Versiones</a>
+      <a href="https://github.com/flickbar/homebrew-tap">Tap de Homebrew</a>
+      <a href="https://github.com/flickbar/flickbar/issues">Informar de un problema</a>
+      <a href="https://github.com/flickbar/flickbar#privacy">Privacidad</a>
+      <a href="https://github.com/sponsors/benymaxparsa">Patrocinar en GitHub</a>
+      <a href="https://buymeacoffee.com/parsakamalipour">Invítame a un café</a>
+    </nav>
+    <nav aria-label="Idiomas">
+      <h3>Idiomas</h3>
+      <div class="langs"><a href="/" hreflang="en" lang="en">English</a><a href="/fr/" hreflang="fr" lang="fr">Français</a><a href="/es/" hreflang="es" lang="es" aria-current="page">Español</a><a href="/fa/" hreflang="fa" lang="fa">فارسی</a><a href="/zh-hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="/zh-hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></div>
+    </nav>
+  </div>
+</footer>
+
+<script type="application/json" id="i18n">{"copy": "Copiar", "copied": "Copiado", "selectToCopy": "Selecciona para copiar", "theme": {"auto": "Tema: automático", "light": "Tema: claro", "dark": "Tema: oscuro"}, "names": {"left": "Deslizar a la izquierda", "right": "Deslizar a la derecha", "up": "Deslizar hacia arriba", "down": "Deslizar hacia abajo", "leftUp": "Deslizar a la izquierda y luego hacia arriba", "tap": "Tocar dos veces", "pinchOut": "Separar los dedos", "pinchIn": "Pellizcar", "grid": "Tocar, mantener y mover"}, "results": {"left": ["Mitad izquierda", "Dos tercios izquierdos", "Tercio izquierdo"], "right": ["Mitad derecha", "Dos tercios derechos", "Tercio derecho"], "middleThird": "Tercio central", "fill": "Llenar la pantalla", "topLeft": "Cuarto superior izquierdo", "minimize": "Minimizar", "center": "Centrar la ventana", "leaveFull": "Salir de pantalla completa", "full": "Pantalla completa", "close": "Cerrar la ventana", "grid": "Columna central, mitad superior"}}</script>
+<script src="/site.js"></script>
+</body>
+</html>
