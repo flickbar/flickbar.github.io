@@ -4,17 +4,19 @@
     <title>Flickbar</title>
     <link>https://flickbar.parsakp.com/</link>
     <item>
-      <title>Flickbar 1.1.0</title>
-      <pubDate>Thu, 05 Nov 2026 02:31:16 +0000</pubDate>
-      <sparkle:version>1.1.0</sparkle:version>
-      <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+      <title>Flickbar 1.2.0</title>
+      <pubDate>Sun, 08 Nov 2026 05:19:40 +0000</pubDate>
+      <sparkle:version>1.2.0</sparkle:version>
+      <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-      <link>https://github.com/flickbar/flickbar/releases/tag/v1.1.0</link>
+      <link>https://github.com/flickbar/flickbar/releases/tag/v1.2.0</link>
       <sparkle:fullReleaseNotesLink>https://github.com/flickbar/flickbar/blob/main/CHANGELOG.md</sparkle:fullReleaseNotesLink>
       <description sparkle:format="markdown"><![CDATA[### Added
 
-- **Adjust swipes before lifting your fingers.** By default, reversing a swipe selects the new direction; perpendicular swipes combine into a quarter, and reversing the second swipe of a quarter swaps it (right, up, then down gives the bottom-right quarter). Any other swipe starts a new gesture. Turn off **Follow swipe direction changes** in **Settings → Gestures** to use swipe-back-to-cancel. Esc still cancels in either mode, and reversing a pinch always cancels.]]></description>
-      <enclosure url="https://github.com/flickbar/flickbar/releases/download/v1.1.0/Flickbar-1.1.0.zip" sparkle:edSignature="Fk260EaY+3HtogdUO5WuhqplFaTGyw1AEt5JTsJvwGfRCjeD76UdmlKP7Wvxh1GRrrN7l7aSKOes7WjraLUiDw==" length="4179554" type="application/octet-stream"/>
+- **简体中文 and 繁體中文.** Flickbar now speaks Simplified and Traditional Chinese. It follows your Mac's language, or choose one in *Settings → General → Language*.
+- **Gestures that press keys.** Set a title-bar gesture to **Send Keys…** in **Settings → Gestures** and record a key combination, such as ⌘C or ⌘V. The gesture brings its window to the front and presses those keys in it.
+- **Español.** Flickbar now speaks Spanish, and the French has been reviewed.]]></description>
+      <enclosure url="https://github.com/flickbar/flickbar/releases/download/v1.2.0/Flickbar-1.2.0.zip" sparkle:edSignature="XjRAvLc7t4jvVXHxn3DTnmtCplQeVp2yha/e56e+8HXeUPh4ZHFIsURHuWVGcyuT5Ck4fmY0Lez5cghzORjcAg==" length="4216575" type="application/octet-stream"/>
     </item>
   </channel>
 </rss>
