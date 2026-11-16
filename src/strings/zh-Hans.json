@@ -5,7 +5,7 @@
   "home": "/zh-hans/",
   "ogLocale": "zh_CN",
   "font": "/fonts/bricolage-latin.woff2",
-  "title": "Flickbar",
+  "title": "Flickbar：用触控板手势整理 Mac 窗口",
   "description": "用触控板手势在窗口标题栏上吸附、调整大小和移动 macOS 窗口。免费且开源。",
   "skip": "跳到正文",
   "navFeatures": "功能",

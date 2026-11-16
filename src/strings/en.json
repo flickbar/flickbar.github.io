@@ -5,7 +5,7 @@
   "home": "/",
   "ogLocale": "en_US",
   "font": "/fonts/bricolage-latin.woff2",
-  "title": "Flickbar",
+  "title": "Flickbar: snap Mac windows with trackpad gestures",
   "description": "Snap, resize and move macOS windows with trackpad gestures on their title bars. Free and open source.",
   "skip": "Skip to content",
   "navFeatures": "Features",
